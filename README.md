@@ -80,7 +80,7 @@ npm run start
 yarn start
 ```
 
-The application will start on port 9000 by default.
+The application will start on port 8080 by default.
 
 ## 📝 Project Structure
 
