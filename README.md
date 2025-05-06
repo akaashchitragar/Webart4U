@@ -4,6 +4,7 @@
 [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
 [![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://www.php.net/)
 [![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/)
+[![Strapi](https://img.shields.io/badge/Strapi-2F2E8B?style=for-the-badge&logo=strapi&logoColor=white)](https://strapi.io/)
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
 
 ## 📌 Overview
@@ -16,7 +17,7 @@ Webart4U is a modern web development agency website showcasing our services, por
 - 🎭 **Beautiful Designs** - Custom CSS animations and transitions
 - 📱 **Fully Responsive** - Perfect experience on any device
 - 🖼️ **Interactive Elements** - Using JavaScript and jQuery
-- 📝 **Blog Platform** - PHP-based content management
+- 📝 **Blog Platform** - Strapi-powered headless CMS for flexible content management
 - 🔍 **SEO Optimized** - Structured data and meta tags for better visibility
 - 🌙 **Dark/Light Mode** - User-selectable theme preferences
 
@@ -24,6 +25,7 @@ Webart4U is a modern web development agency website showcasing our services, por
 
 - **Frontend**: HTML5, CSS3
 - **Backend**: PHP
+- **CMS**: Strapi (Headless CMS)
 - **Styling**: Custom CSS
 - **Database**: MySQL
 - **Icons**: Font Awesome
@@ -53,7 +55,19 @@ mysql -u username -p database_name < database/schema.sql
 
 4. Configure the database connection in `config/database.php`
 
-5. Open your website in a browser
+5. Install and configure Strapi for the blog
+```bash
+# Navigate to the Strapi directory
+cd strapi
+
+# Install dependencies
+npm install
+
+# Start Strapi development server
+npm run develop
+```
+
+6. Open your website in a browser
 
 ## 📦 Build for Production
 
@@ -81,6 +95,11 @@ webart4u/
 ├── config/           # Configuration files
 ├── database/         # Database scripts
 ├── admin/            # Admin area
+├── blog/             # Blog frontend components
+├── strapi/           # Strapi headless CMS for blog
+│   ├── api/          # Strapi API configuration
+│   ├── config/       # Strapi configuration
+│   └── public/       # Strapi public assets
 └── index.php         # Entry point
 ```
 
@@ -105,5 +124,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [CSS3](https://developer.mozilla.org/en-US/docs/Web/CSS)
 - [PHP](https://www.php.net/)
 - [MySQL](https://www.mysql.com/)
+- [Strapi](https://strapi.io/)
 - [Font Awesome](https://fontawesome.com/)
 - [jQuery](https://jquery.com/)
