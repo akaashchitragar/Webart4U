@@ -1,8 +1,0 @@
----
-deployment:
-  tasks:
-    - export DEPLOYPATH=/home/username/nodejs/webart4u
-    - /bin/cp -R * $DEPLOYPATH
-    - cd $DEPLOYPATH
-    - npm install --production
-    - npm run build 

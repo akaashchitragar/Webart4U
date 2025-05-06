@@ -1,9 +1,9 @@
 # 🎨 Webart4U
 
-[![Next.js](https://img.shields.io/badge/Next.js-15.3.1-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/React-18.2.0-blue?style=for-the-badge&logo=react)](https://reactjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
+[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
+[![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://www.php.net/)
+[![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/)
 [![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
 
 ## 📌 Overview
@@ -12,33 +12,29 @@ Webart4U is a modern web development agency website showcasing our services, por
 
 ## ✨ Features
 
-- 🚀 **Lightning Fast Performance** - Built with Next.js 15 for optimal speed and SEO
-- 🎭 **Beautiful Animations** - Powered by Framer Motion and GSAP
+- 🚀 **Fast Performance** - Clean and optimized HTML/CSS/PHP code
+- 🎭 **Beautiful Designs** - Custom CSS animations and transitions
 - 📱 **Fully Responsive** - Perfect experience on any device
-- 🖼️ **Interactive 3D Elements** - Using Three.js and Spline
-- 📝 **Blog Platform** - Integrated MDX-based content management
+- 🖼️ **Interactive Elements** - Using JavaScript and jQuery
+- 📝 **Blog Platform** - PHP-based content management
 - 🔍 **SEO Optimized** - Structured data and meta tags for better visibility
 - 🌙 **Dark/Light Mode** - User-selectable theme preferences
 
 ## 🛠️ Tech Stack
 
-- **Frontend Framework**: Next.js 15
-- **UI Library**: React 18
-- **Type Safety**: TypeScript
-- **Styling**: Tailwind CSS 4, shadcn/ui
-- **3D Visualization**: Three.js, React Three Fiber, Spline
-- **Animations**: Framer Motion, GSAP
-- **Form Handling**: React Hook Form, Zod
-- **State Management**: Zustand
-- **Icons**: Lucide React, React Icons
-- **Content**: MDX, Gray Matter
+- **Frontend**: HTML5, CSS3
+- **Backend**: PHP
+- **Styling**: Custom CSS
+- **Database**: MySQL
+- **Icons**: Font Awesome
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-- Node.js 18.0 or higher
-- npm or yarn
+- PHP 8.0 or higher
+- MySQL 8.0 or higher
+- Apache/Nginx web server
 
 ### Installation
 
@@ -48,56 +44,44 @@ git clone https://github.com/yourusername/webart4u.git
 cd webart4u
 ```
 
-2. Install dependencies
+2. Configure your web server to point to the project directory
+
+3. Import the database schema
 ```bash
-npm install
-# or
-yarn install
+mysql -u username -p database_name < database/schema.sql
 ```
 
-3. Run the development server
-```bash
-npm run dev
-# or
-yarn dev
-```
+4. Configure the database connection in `config/database.php`
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the result
+5. Open your website in a browser
 
 ## 📦 Build for Production
 
-```bash
-npm run build
-# or
-yarn build
-```
+1. Optimize images and assets
+2. Minify CSS and JavaScript files
+3. Configure production database settings
 
 ## 🚀 Deployment
 
-```bash
-npm run start
-# or
-yarn start
-```
-
-The application will start on port 3001 by default.
+1. Upload files to your hosting server
+2. Configure your production environment
+3. Set up the database
+4. Update configuration files for production
 
 ## 📝 Project Structure
 
 ```
 webart4u/
-├── public/           # Static assets
-├── src/              # Source code
-│   ├── app/          # Next.js App Router
-│   ├── components/   # Reusable UI components
-│   ├── lib/          # Utility functions
-│   ├── pages/        # Page components
-│   ├── styles/       # Global styles
-│   └── types/        # TypeScript type definitions
-├── .eslintrc.json    # ESLint configuration
-├── next.config.mjs   # Next.js configuration
-├── tailwind.config.ts # Tailwind CSS configuration
-└── tsconfig.json     # TypeScript configuration
+├── assets/           # CSS, JS, and images
+│   ├── css/          # Stylesheets
+│   ├── js/           # JavaScript files
+│   └── images/       # Image files
+├── includes/         # PHP include files
+├── templates/        # HTML templates
+├── config/           # Configuration files
+├── database/         # Database scripts
+├── admin/            # Admin area
+└── index.php         # Entry point
 ```
 
 ## 🤝 Contributing
@@ -117,8 +101,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgements
 
-- [Next.js](https://nextjs.org/)
-- [React](https://reactjs.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Three.js](https://threejs.org/)
-- [Framer Motion](https://www.framer.com/motion/)
+- [HTML5](https://developer.mozilla.org/en-US/docs/Web/HTML)
+- [CSS3](https://developer.mozilla.org/en-US/docs/Web/CSS)
+- [PHP](https://www.php.net/)
+- [MySQL](https://www.mysql.com/)
+- [Font Awesome](https://fontawesome.com/)
+- [jQuery](https://jquery.com/)

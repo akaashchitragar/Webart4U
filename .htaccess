@@ -1,3 +1,0 @@
-RewriteEngine On
-RewriteRule ^$ https://%{HTTP_HOST}/app/ [R=301,L]
-RewriteRule ^(.*)$ https://%{HTTP_HOST}/app/$1 [P,L] 
