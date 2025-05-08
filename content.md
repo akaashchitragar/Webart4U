@@ -2,17 +2,28 @@
 
 ## Hero Section
 
-### Headline
-Transforming Digital Visions Into Reality Since 2002
+### Tagline
+Your Vision, Our Expertise
 
-### Subheadline
-Award-winning UI/UX design, web development, and mobile solutions that elevate your brand and drive business growth.
+### Main Headline
+Crafting Digital Experiences That Transform Businesses Since 2002
 
-### CTA Button
-Explore Our Portfolio
+### Dynamic Subheadline
+We don't just build websites. We create digital solutions that drive growth, enhance user experience, and elevate your brand in the digital landscape.
+
+### Value Proposition Points
+- **Award-winning UI/UX Design** | Intuitive interfaces that captivate users
+- **Custom Web Development** | Scalable solutions built for performance
+- **AI-Powered Solutions** | Intelligent features that set you apart
+
+### Primary CTA
+Start Your Journey → 
 
 ### Secondary CTA
-Schedule a Free Consultation
+View Our Portfolio
+
+### Background
+[Dynamic gradient overlay with subtle animation and portfolio preview]
 
 ---
 
@@ -275,14 +286,23 @@ Sunday: Closed
 
 ## Frequently Asked Questions
 
+### What services does Webart4U offer?
+We specialize in UI/UX design, website development, web applications, and mobile app development for Android and iOS, using the latest tech stack and AI-driven solutions. Our comprehensive digital services are crafted to transform your business challenges into opportunities for growth and innovation.
+
+### How long does it take to develop a website or app?
+The timeline depends on the complexity and scope of the project. Typically, websites take 2-6 weeks, while mobile apps may take 6-12 weeks. We prioritize quality and precision while maintaining efficiency, ensuring your digital solution launches with impact and performs flawlessly from day one.
+
+### Do you provide post-launch support?
+Absolutely! We offer ongoing maintenance and support to ensure your website or app runs smoothly and stays updated. Our dedicated support team provides proactive monitoring, regular updates, performance optimization, and rapid response to any issues—ensuring your digital investment continues to deliver value long after launch.
+
+### Can you help with branding and logo design?
+Definitely! We provide comprehensive branding services including logo creation, brand guideline formulation, visual identity development, and brand storytelling. Our design team crafts memorable, cohesive brand identities that resonate with your target audience and differentiate you in competitive markets.
+
+### How do I get started with Webart4U?
+Simply reach out to us through our contact form or email, and we'll schedule a consultation to discuss your project requirements. Our collaborative discovery process helps us understand your business goals, audience needs, and technical requirements—laying the foundation for a successful partnership and exceptional digital outcome.
+
 ### What industries do you specialize in?
 Webart4U has extensive experience across multiple industries including healthcare, finance, education, e-commerce, travel, and technology. Our diverse portfolio allows us to bring cross-industry insights and best practices to every project.
-
-### How long does a typical project take?
-Project timelines vary based on scope and complexity. A standard website typically takes 4-8 weeks, while custom web applications and mobile apps may require 8-16 weeks. During our initial consultation, we'll provide a detailed timeline tailored to your specific requirements.
-
-### Do you provide support after the project is completed?
-Absolutely! We offer comprehensive post-launch support and maintenance packages to ensure your digital solution continues to perform optimally. Our support team is available to address any issues, implement updates, and provide technical assistance.
 
 ### How do you ensure the security of web applications?
 Security is paramount in everything we build. We implement industry-standard security protocols, conduct regular vulnerability assessments, and follow OWASP best practices. For applications handling sensitive data, we incorporate additional security measures like encryption, secure authentication, and regular security audits.

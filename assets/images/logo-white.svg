@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="50" viewBox="0 0 180 50">
+  <style>
+    .text { fill: #FFFFFF; }
+    .highlight { fill: #C8102E; }
+  </style>
+  <text x="10" y="35" font-family="Poppins, sans-serif" font-size="26" font-weight="bold" class="text">Webart<tspan class="highlight">4U</tspan></text>
+</svg> 
