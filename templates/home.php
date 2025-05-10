@@ -1162,15 +1162,27 @@ document.addEventListener('DOMContentLoaded', function() {
 </section>
 
 <!-- Testimonials Section -->
-<section id="testimonials" class="section bg-light">
+<section id="testimonials" class="section">
+    <div class="testimonials-background">
+        <div class="testimonial-shapes">
+            <div class="testimonial-shape shape-1"></div>
+            <div class="testimonial-shape shape-2"></div>
+            <div class="testimonial-shape shape-3"></div>
+        </div>
+        <div class="testimonial-dots"></div>
+    </div>
     <div class="container">
-        <div class="section-title">
+        <div class="section-title" data-aos="fade-up">
             <p class="section-subtitle">Client Feedback</p>
             <h2>What Our Clients Say</h2>
         </div>
-        <div class="testimonials-slider">
-            <div class="testimonial-card animate-on-scroll">
-                <p class="testimonial-content">"Webart4U transformed our vision for telemedicine into a platform that has revolutionized healthcare delivery in rural areas. Their technical expertise and understanding of user needs resulted in a solution that exceeded our expectations."</p>
+        
+        <div class="testimonials-container">
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                    <p>"Webart4U transformed our vision for telemedicine into a platform that has revolutionized healthcare delivery in rural areas. Their technical expertise and understanding of user needs resulted in a solution that exceeded our expectations."</p>
+                </div>
                 <div class="testimonial-author">
                     <img src="<?php echo IMAGES_PATH; ?>testimonials/rajesh.jpg" alt="Rajesh Mehta" class="author-image">
                     <div class="author-info">
@@ -1180,8 +1192,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
             
-            <div class="testimonial-card animate-on-scroll">
-                <p class="testimonial-content">"The e-commerce platform developed by Webart4U has been instrumental in our 200% growth over the past year. Their attention to detail and focus on user experience has significantly improved our conversion rates and customer retention."</p>
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                    <p>"The e-commerce platform developed by Webart4U has been instrumental in our 200% growth over the past year. Their attention to detail and focus on user experience has significantly improved our conversion rates and customer retention."</p>
+                </div>
                 <div class="testimonial-author">
                     <img src="<?php echo IMAGES_PATH; ?>testimonials/priya.jpg" alt="Priya Sharma" class="author-image">
                     <div class="author-info">
@@ -1191,8 +1206,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
             
-            <div class="testimonial-card animate-on-scroll">
-                <p class="testimonial-content">"Working with Webart4U was a game-changer for our startup. Their team not only delivered a stunning mobile application but also provided valuable insights that helped shape our business model. They're true partners in our success story."</p>
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                    <p>"Working with Webart4U was a game-changer for our startup. Their team not only delivered a stunning mobile application but also provided valuable insights that helped shape our business model. They're true partners in our success story."</p>
+                </div>
                 <div class="testimonial-author">
                     <img src="<?php echo IMAGES_PATH; ?>testimonials/ahmed.jpg" alt="Ahmed Khan" class="author-image">
                     <div class="author-info">
@@ -1202,75 +1220,378 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             </div>
         </div>
+        
+        <div class="testimonial-indicators">
+            <span class="indicator active"></span>
+            <span class="indicator"></span>
+            <span class="indicator"></span>
+        </div>
     </div>
 </section>
 
-<!-- Team Section -->
-<section id="team" class="section">
-    <div class="container">
-        <div class="section-title">
-            <p class="section-subtitle">Meet Our Experts</p>
-            <h2>Our Team</h2>
-        </div>
-        <div class="team-grid">
-            <div class="team-member animate-on-scroll">
-                <img src="<?php echo IMAGES_PATH; ?>team/sheetal.jpg" alt="Sheetal Chavan" class="member-image">
-                <div class="member-info">
-                    <h3 class="member-name">Sheetal Chavan</h3>
-                    <p class="member-position">Managing Director</p>
-                    <p>With visionary leadership and strategic insight, Sheetal guides Webart4U's growth and innovation initiatives.</p>
-                    <div class="member-social">
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                    </div>
-                </div>
-            </div>
+<!-- Add the CSS styles for the enhanced testimonials section -->
+<style>
+    /* Testimonials Section */
+    #testimonials {
+        position: relative;
+        overflow: hidden;
+        padding: 100px 0;
+        z-index: 1;
+    }
+    
+    .testimonials-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        overflow: hidden;
+    }
+    
+    .testimonial-shapes {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+    
+    .testimonial-shape {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(70px);
+        opacity: 0.5;
+    }
+    
+    .testimonial-shape.shape-1 {
+        background: linear-gradient(135deg, rgba(78, 152, 237, 0.4), rgba(55, 125, 200, 0.2));
+        width: 350px;
+        height: 350px;
+        top: -100px;
+        right: -100px;
+        animation: float-shape 15s ease-in-out infinite alternate;
+    }
+    
+    .testimonial-shape.shape-2 {
+        background: linear-gradient(135deg, rgba(255, 89, 60, 0.3), rgba(230, 65, 36, 0.1));
+        width: 400px;
+        height: 400px;
+        bottom: -150px;
+        left: -150px;
+        animation: float-shape 18s ease-in-out infinite alternate-reverse;
+    }
+    
+    .testimonial-shape.shape-3 {
+        background: linear-gradient(135deg, rgba(104, 58, 183, 0.3), rgba(76, 39, 134, 0.1));
+        width: 300px;
+        height: 300px;
+        top: 30%;
+        left: 20%;
+        animation: float-shape 12s ease-in-out infinite alternate;
+    }
+    
+    @keyframes float-shape {
+        0% {
+            transform: translate(0, 0) scale(1);
+        }
+        100% {
+            transform: translate(20px, 20px) scale(1.1);
+        }
+    }
+    
+    .testimonial-dots {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: radial-gradient(circle, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+        background-size: 25px 25px;
+        opacity: 0.6;
+    }
+    
+    /* Testimonials Container and Cards */
+    .testimonials-container {
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+        gap: 2rem;
+        position: relative;
+        margin-top: 3rem;
+        overflow: hidden;
+    }
+    
+    .testimonial-card {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        padding: 0;
+        flex: 1;
+        max-width: 380px;
+        min-height: 300px;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        transform: translateY(0);
+    }
+    
+    .testimonial-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        z-index: 2;
+    }
+    
+    .testimonial-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 6px;
+        background: linear-gradient(to right, var(--primary-color), transparent);
+        border-radius: 20px 20px 0 0;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+    }
+    
+    .testimonial-card:hover::before {
+        opacity: 1;
+    }
+    
+    .testimonial-content {
+        padding: 2.5rem 2rem 1.5rem;
+        position: relative;
+        flex-grow: 1;
+    }
+    
+    .quote-icon {
+        position: absolute;
+        top: -15px;
+        left: 20px;
+        background: var(--primary-color);
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        box-shadow: 0 5px 15px rgba(var(--primary-color-rgb), 0.3);
+        transition: transform 0.4s ease;
+    }
+    
+    .testimonial-card:hover .quote-icon {
+        transform: rotate(15deg) scale(1.1);
+    }
+    
+    .testimonial-content p {
+        font-size: 1rem;
+        line-height: 1.7;
+        color: var(--text-color-dark);
+        margin: 0;
+        font-style: italic;
+    }
+    
+    .testimonial-author {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.5rem 2rem;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 0 0 20px 20px;
+        position: relative;
+    }
+    
+    .author-image {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid white;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.4s ease;
+    }
+    
+    .testimonial-card:hover .author-image {
+        transform: scale(1.1);
+    }
+    
+    .author-info {
+        flex: 1;
+    }
+    
+    .author-info h4 {
+        font-size: 1rem;
+        font-weight: 600;
+        margin: 0 0 0.25rem;
+        color: var(--text-color-dark);
+    }
+    
+    .author-position {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin: 0;
+    }
+    
+    /* Testimonial Indicators */
+    .testimonial-indicators {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-top: 2.5rem;
+    }
+    
+    .indicator {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: rgba(var(--primary-color-rgb), 0.2);
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .indicator.active {
+        width: 30px;
+        border-radius: 20px;
+        background-color: var(--primary-color);
+    }
+    
+    /* Responsive Adjustments */
+    @media screen and (max-width: 992px) {
+        .testimonials-container {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .testimonial-card {
+            max-width: 100%;
+            width: 90%;
+        }
+        
+        .testimonial-shape {
+            filter: blur(50px);
+        }
+    }
+    
+    @media screen and (max-width: 768px) {
+        #testimonials {
+            padding: 70px 0;
+        }
+        
+        .testimonial-shape {
+            filter: blur(40px);
+        }
+        
+        .testimonial-content {
+            padding: 2rem 1.5rem 1rem;
+        }
+        
+        .testimonial-author {
+            padding: 1.25rem 1.5rem;
+        }
+    }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Set up testimonial carousel functionality
+    const testimonialCards = document.querySelectorAll('.testimonial-card');
+    const indicators = document.querySelectorAll('.testimonial-indicators .indicator');
+    let currentIndex = 0;
+    
+    // Initially hide all cards except the first one
+    function setupCarousel() {
+        if (window.innerWidth <= 992) {
+            // For mobile view, show only one testimonial at a time
+            testimonialCards.forEach((card, index) => {
+                if (index === 0) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
             
-            <div class="team-member animate-on-scroll">
-                <img src="<?php echo IMAGES_PATH; ?>team/akash.jpg" alt="Akash Chitragar" class="member-image">
-                <div class="member-info">
-                    <h3 class="member-name">Akash Chitragar</h3>
-                    <p class="member-position">Vibe Developer</p>
-                    <p>Akash brings energy and creativity to every project, specializing in developing captivating user experiences.</p>
-                    <div class="member-social">
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                    </div>
-                </div>
-            </div>
+            // Set up indicators
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    currentIndex = index;
+                    updateCarousel();
+                });
+            });
+        } else {
+            // For desktop, show all testimonials
+            testimonialCards.forEach(card => {
+                card.style.display = 'flex';
+            });
+        }
+    }
+    
+    function updateCarousel() {
+        testimonialCards.forEach((card, index) => {
+            if (index === currentIndex) {
+                card.style.display = 'flex';
+                card.style.opacity = '0';
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                }, 50);
+            } else {
+                card.style.display = 'none';
+            }
+        });
+        
+        indicators.forEach((indicator, index) => {
+            if (index === currentIndex) {
+                indicator.classList.add('active');
+            } else {
+                indicator.classList.remove('active');
+            }
+        });
+    }
+    
+    // Run setup on load
+    setupCarousel();
+    
+    // Update on resize
+    window.addEventListener('resize', setupCarousel);
+    
+    // Auto-advance carousel for mobile view
+    if (window.innerWidth <= 992) {
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % testimonialCards.length;
+            updateCarousel();
+        }, 5000);
+    }
+    
+    // Add parallax effect to background shapes
+    document.addEventListener('mousemove', function(e) {
+        if (window.innerWidth <= 768) return; // Disable on mobile
+        
+        const shapes = document.querySelectorAll('.testimonial-shape');
+        const strength = 0.03; // Parallax strength
+        
+        const windowWidth = window.innerWidth;
+        const windowHeight = window.innerHeight;
+        
+        // Calculate mouse position as a percentage
+        const mouseXPercent = (e.clientX / windowWidth) - 0.5;
+        const mouseYPercent = (e.clientY / windowHeight) - 0.5;
+        
+        shapes.forEach((shape, index) => {
+            // Different parallax strength for each shape
+            const factor = (index + 1) * strength;
             
-            <div class="team-member animate-on-scroll">
-                <img src="<?php echo IMAGES_PATH; ?>team/vathsala.jpg" alt="Vathsala H K" class="member-image">
-                <div class="member-info">
-                    <h3 class="member-name">Vathsala H K</h3>
-                    <p class="member-position">Core UI/UX Designer</p>
-                    <p>As our lead UI/UX designer, Vathsala transforms complex requirements into intuitive, beautiful interfaces.</p>
-                    <div class="member-social">
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="team-member animate-on-scroll">
-                <img src="<?php echo IMAGES_PATH; ?>team/shraddha.jpg" alt="Shraddha Annigeri" class="member-image">
-                <div class="member-info">
-                    <h3 class="member-name">Shraddha Annigeri</h3>
-                    <p class="member-position">Graphics Designer</p>
-                    <p>Shraddha's exceptional visual storytelling abilities bring brands to life across digital platforms.</p>
-                    <div class="member-social">
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+            // Apply transform
+            shape.style.transform = `translate(${mouseXPercent * factor * 100}px, ${mouseYPercent * factor * 100}px)`;
+        });
+    });
+});
+</script>
 
 <!-- FAQ Section -->
 <section id="faq" class="section">
@@ -2381,3 +2702,70 @@ document.addEventListener('DOMContentLoaded', function() {
         background-color: #F8F9FA;
     }
 </style>
+
+<!-- Team Section -->
+<section id="team" class="section">
+    <div class="container">
+        <div class="section-title">
+            <p class="section-subtitle">Meet Our Experts</p>
+            <h2>Our Team</h2>
+        </div>
+        <div class="team-grid">
+            <div class="team-member animate-on-scroll">
+                <img src="<?php echo IMAGES_PATH; ?>team/sheetal.jpg" alt="Sheetal Chavan" class="member-image">
+                <div class="member-info">
+                    <h3 class="member-name">Sheetal Chavan</h3>
+                    <p class="member-position">Managing Director</p>
+                    <p>With visionary leadership and strategic insight, Sheetal guides Webart4U's growth and innovation initiatives.</p>
+                    <div class="member-social">
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="team-member animate-on-scroll">
+                <img src="<?php echo IMAGES_PATH; ?>team/akash.jpg" alt="Akash Chitragar" class="member-image">
+                <div class="member-info">
+                    <h3 class="member-name">Akash Chitragar</h3>
+                    <p class="member-position">Vibe Developer</p>
+                    <p>Akash brings energy and creativity to every project, specializing in developing captivating user experiences.</p>
+                    <div class="member-social">
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="team-member animate-on-scroll">
+                <img src="<?php echo IMAGES_PATH; ?>team/vathsala.jpg" alt="Vathsala H K" class="member-image">
+                <div class="member-info">
+                    <h3 class="member-name">Vathsala H K</h3>
+                    <p class="member-position">Core UI/UX Designer</p>
+                    <p>As our lead UI/UX designer, Vathsala transforms complex requirements into intuitive, beautiful interfaces.</p>
+                    <div class="member-social">
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="team-member animate-on-scroll">
+                <img src="<?php echo IMAGES_PATH; ?>team/shraddha.jpg" alt="Shraddha Annigeri" class="member-image">
+                <div class="member-info">
+                    <h3 class="member-name">Shraddha Annigeri</h3>
+                    <p class="member-position">Graphics Designer</p>
+                    <p>Shraddha's exceptional visual storytelling abilities bring brands to life across digital platforms.</p>
+                    <div class="member-social">
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
