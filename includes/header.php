@@ -6,6 +6,9 @@
     <meta name="description" content="<?php echo SITE_DESCRIPTION; ?>">
     <title><?php echo isset($page_title) ? $page_title . ' - ' . SITE_TITLE : SITE_TITLE; ?></title>
     
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P5LVN1NKW5"></script>
+    
     <!-- Favicon -->
     <link rel="shortcut icon" href="<?php echo IMAGES_PATH; ?>favicon.ico" type="image/x-icon">
     
@@ -18,6 +21,12 @@
     
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    
+    <!-- Enhanced Analytics -->
+    <script src="<?php echo JS_PATH; ?>analytics.js"></script>
+    
+    <!-- Cookie Consent -->
+    <script src="<?php echo JS_PATH; ?>consent.js"></script>
     
     <style>
         /* Navigation Capsule Styling */
@@ -77,6 +86,11 @@
             transition: all 0.3s ease;
             position: relative;
             background-color: transparent;
+        }
+        
+        /* Ensure icons are white */
+        .nav-links li a i {
+            color: white;
         }
         
         /* Hover effect */
@@ -178,27 +192,21 @@
                     </a>
                 </li>
                 <li>
-                    <a href="<?php echo SITE_URL; ?>#team">
-                        <i class="fas fa-users"></i>
-                        <span class="tooltip">Our Team</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="<?php echo SITE_URL; ?>#features">
-                        <i class="fas fa-star"></i>
-                        <span class="tooltip">Features</span>
-                    </a>
-                </li>
-                <li>
                     <a href="<?php echo SITE_URL; ?>#technologies">
                         <i class="fas fa-code"></i>
                         <span class="tooltip">Technologies</span>
                     </a>
                 </li>
                 <li>
-                    <a href="<?php echo SITE_URL; ?>#faq">
-                        <i class="fas fa-question-circle"></i>
-                        <span class="tooltip">FAQ</span>
+                    <a href="<?php echo SITE_URL; ?>#testimonials">
+                        <i class="fas fa-quote-right"></i>
+                        <span class="tooltip">Testimonials</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo SITE_URL; ?>#team">
+                        <i class="fas fa-users"></i>
+                        <span class="tooltip">Our Team</span>
                     </a>
                 </li>
                 <li>

@@ -108,6 +108,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 </section>
 
+<!-- Hero section tech logo styles -->
+<style>
+    .hero .floating-elements .tech-logo {
+        filter: none !important;
+        opacity: 1 !important;
+    }
+    
+    .hero .element {
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    
+    .hero .element:hover {
+        transform: translateY(-8px) scale(1.05);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.18);
+    }
+</style>
+
 <!-- About Section -->
 <section id="about" class="section about-section bg-light-grey">
     <div class="about-background">
@@ -288,6 +306,52 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
 </section>
+
+<style>
+    /* Enhanced Services Section Styles */
+    #services {
+        position: relative;
+        padding: 120px 0 140px; /* Increased bottom padding for better balance */
+        overflow: hidden;
+    }
+    
+    #services .section-title {
+        margin-bottom: 60px;
+        text-align: center;
+    }
+    
+    .services-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+    
+    .service-card {
+        flex: 1;
+        min-width: 260px;
+        max-width: 300px;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    @media screen and (max-width: 768px) {
+        #services {
+            padding: 90px 0 110px;
+        }
+        
+        .services-container {
+            gap: 20px;
+        }
+        
+        .service-card {
+            min-width: 100%;
+        }
+    }
+</style>
 
 <!-- Portfolio Section -->
 <section id="portfolio" class="section">
@@ -1090,76 +1154,395 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <!-- Technologies Section -->
-<section id="technologies" class="section bg-light">
+<section id="technologies" class="section tech-showcase">
     <div class="container">
-        <div class="section-title">
+        <div class="section-title text-center">
             <p class="section-subtitle">Our Tools</p>
             <h2>Technologies We Use</h2>
+            <div class="title-separator"><span></span></div>
+            <p class="section-description">We leverage the latest and most powerful technologies to deliver exceptional digital solutions</p>
         </div>
         
-        <div class="tech-categories">
-            <div class="tech-category animate-on-scroll">
-                <h3>Frontend Technologies</h3>
-                <div class="tech-list">
-                    <div class="tech-item"><i class="fab fa-html5"></i> HTML5</div>
-                    <div class="tech-item"><i class="fab fa-css3-alt"></i> CSS3</div>
-                    <div class="tech-item"><i class="fab fa-react"></i> React.js</div>
-                    <div class="tech-item"><i class="fab fa-angular"></i> Angular</div>
-                    <div class="tech-item"><i class="fab fa-vuejs"></i> Vue.js</div>
-                    <div class="tech-item"><i class="fab fa-js"></i> Next.js</div>
-                    <div class="tech-item"><i class="fab fa-js"></i> TypeScript</div>
-                    <div class="tech-item"><i class="fab fa-css3"></i> Tailwind CSS</div>
-                    <div class="tech-item"><i class="fab fa-bootstrap"></i> Bootstrap</div>
+        <div class="tech-slider-container">
+            <div class="tech-slider">
+                <div class="tech-track">
+                    <!-- Track 1 - First copy of logos -->
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/html-logo.png" alt="HTML" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/javascript-logo.png" alt="JavaScript" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/react-logo-svgrepo-com.svg" alt="React" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/angular-logo.png" alt="Angular" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/vue-logo.png" alt="Vue.js" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/bootstrap-logo.png" alt="Bootstrap" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/nodejs-logo.png" alt="Node.js" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/php-logo.png" alt="PHP" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/python-logo.png" alt="Python" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/mongodb-logo.png" alt="MongoDB" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/mysql-logo.png" alt="MySQL" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/postgresql-logo.png" alt="PostgreSQL" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/redis-logo.png" alt="Redis" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/firebase-logo.png" alt="Firebase" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/supabase-logo.png" alt="Supabase" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/aws-logo.png" alt="AWS" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/dynamo-logo.png" alt="DynamoDB" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/googlecloud-logo.png" alt="Google Cloud" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/azure-logo.png" alt="Microsoft Azure" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/figma-logo.png" alt="Figma" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/adobe-xd-1-logo-svgrepo-com.svg" alt="Adobe XD" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/adobeill-logo.png" alt="Adobe Illustrator" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/framer-logo.png" alt="Framer" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/android-logo-svgrepo-com.svg" alt="Android" class="tech-logo">
+                    </div>
+                    
+                    <!-- Track 2 - Duplicate copy for continuous loop -->
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/html-logo.png" alt="HTML" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/javascript-logo.png" alt="JavaScript" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/react-logo-svgrepo-com.svg" alt="React" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/angular-logo.png" alt="Angular" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/vue-logo.png" alt="Vue.js" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/bootstrap-logo.png" alt="Bootstrap" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/nodejs-logo.png" alt="Node.js" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/php-logo.png" alt="PHP" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/python-logo.png" alt="Python" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/mongodb-logo.png" alt="MongoDB" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/mysql-logo.png" alt="MySQL" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/postgresql-logo.png" alt="PostgreSQL" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/redis-logo.png" alt="Redis" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/firebase-logo.png" alt="Firebase" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/supabase-logo.png" alt="Supabase" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/aws-logo.png" alt="AWS" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/dynamo-logo.png" alt="DynamoDB" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/googlecloud-logo.png" alt="Google Cloud" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/azure-logo.png" alt="Microsoft Azure" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/figma-logo.png" alt="Figma" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/adobe-xd-1-logo-svgrepo-com.svg" alt="Adobe XD" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/adobeill-logo.png" alt="Adobe Illustrator" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/framer-logo.png" alt="Framer" class="tech-logo">
+                    </div>
+                    <div class="tech-slide">
+                        <img src="<?php echo IMAGES_PATH; ?>tech-logos/android-logo-svgrepo-com.svg" alt="Android" class="tech-logo">
+                    </div>
                 </div>
             </div>
             
-            <div class="tech-category animate-on-scroll">
-                <h3>Backend Technologies</h3>
-                <div class="tech-list">
-                    <div class="tech-item"><i class="fab fa-node-js"></i> Node.js</div>
-                    <div class="tech-item"><i class="fab fa-node-js"></i> Express.js</div>
-                    <div class="tech-item"><i class="fab fa-python"></i> Python/Django</div>
-                    <div class="tech-item"><i class="fab fa-php"></i> PHP</div>
-                </div>
-            </div>
-            
-            <div class="tech-category animate-on-scroll">
-                <h3>Database Technologies</h3>
-                <div class="tech-list">
-                    <div class="tech-item"><i class="fas fa-database"></i> MongoDB</div>
-                    <div class="tech-item"><i class="fas fa-database"></i> MySQL</div>
-                    <div class="tech-item"><i class="fas fa-database"></i> PostgreSQL</div>
-                    <div class="tech-item"><i class="fas fa-database"></i> Redis</div>
-                    <div class="tech-item"><i class="fas fa-fire"></i> Firebase</div>
-                    <div class="tech-item"><i class="fas fa-database"></i> Supabase</div>
-                    <div class="tech-item"><i class="fab fa-aws"></i> AWS DynamoDB</div>
-                </div>
-            </div>
-            
-            <div class="tech-category animate-on-scroll">
-                <h3>Design Tools</h3>
-                <div class="tech-list">
-                    <div class="tech-item"><i class="fab fa-adobe"></i> Adobe Illustrator</div>
-                    <div class="tech-item"><i class="fab fa-adobe"></i> Adobe XD</div>
-                    <div class="tech-item"><i class="fab fa-figma"></i> Figma</div>
-                    <div class="tech-item"><i class="fas fa-frame"></i> Framer</div>
-                </div>
-            </div>
-            
-            <div class="tech-category animate-on-scroll">
-                <h3>DevOps & Hosting</h3>
-                <div class="tech-list">
-                    <div class="tech-item"><i class="fab fa-aws"></i> AWS</div>
-                    <div class="tech-item"><i class="fab fa-google"></i> Google Cloud Platform</div>
-                    <div class="tech-item"><i class="fab fa-microsoft"></i> Microsoft Azure</div>
-                    <div class="tech-item"><i class="fab fa-docker"></i> Docker</div>
-                    <div class="tech-item"><i class="fab fa-github"></i> GitHub Actions</div>
-                    <div class="tech-item"><i class="fas fa-server"></i> cPanel</div>
-                </div>
-            </div>
+            <div class="tech-slider-overlay left"></div>
+            <div class="tech-slider-overlay right"></div>
         </div>
     </div>
 </section>
+
+<!-- Add styles for the technology slider -->
+<style>
+    /* Technology Showcase Section */
+    .tech-showcase {
+        background-color: #f8fafc;
+        padding: 90px 0;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .tech-showcase::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 150px;
+        background: linear-gradient(180deg, white, transparent);
+        z-index: 1;
+        pointer-events: none;
+    }
+    
+    .tech-showcase::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 150px;
+        background: linear-gradient(0deg, white, transparent);
+        z-index: 1;
+        pointer-events: none;
+    }
+    
+    .tech-showcase .section-title {
+        margin-bottom: 50px;
+        position: relative;
+        z-index: 2;
+    }
+    
+    .title-separator {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 18px auto;
+        height: 2px;
+        width: 80px;
+    }
+    
+    .title-separator span {
+        height: 100%;
+        width: 100%;
+        background: linear-gradient(90deg, transparent, var(--primary-color, #FF4B24), transparent);
+        display: block;
+    }
+    
+    /* Tech Slider Container */
+    .tech-slider-container {
+        position: relative;
+        width: 100%;
+        padding: 15px 0;
+        margin: 30px 0;
+        overflow: hidden;
+    }
+    
+    /* Tech Slider */
+    .tech-slider {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+    }
+    
+    /* Tech Track - Holds all slides in a continuous track */
+    .tech-track {
+        display: flex;
+        align-items: center;
+        width: fit-content;
+        animation: slideTrack 70s linear infinite;
+    }
+    
+    /* Pause animation on hover */
+    .tech-track:hover {
+        animation-play-state: paused;
+    }
+    
+    /* Each slide containing a logo */
+    .tech-slide {
+        flex-shrink: 0;
+        width: 150px;
+        height: 90px;
+        margin: 0 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.3s ease;
+        position: relative;
+    }
+    
+    .tech-slide:hover {
+        transform: translateY(-5px) scale(1.05);
+        z-index: 3;
+    }
+    
+    /* Tech Logo */
+    .tech-logo {
+        max-width: 100%;
+        max-height: 65px;
+        object-fit: contain;
+        filter: grayscale(100%) opacity(0.7);
+        transition: filter 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        will-change: transform, filter;
+    }
+    
+    .tech-slide:hover .tech-logo {
+        filter: grayscale(0%) opacity(1);
+        transform: scale(1.08);
+    }
+    
+    /* Slider gradient overlays for fade effect on the sides */
+    .tech-slider-overlay {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 120px;
+        z-index: 2;
+        pointer-events: none;
+    }
+    
+    .tech-slider-overlay.left {
+        left: 0;
+        background: linear-gradient(90deg, #f8fafc 0%, rgba(248, 250, 252, 0) 100%);
+    }
+    
+    .tech-slider-overlay.right {
+        right: 0;
+        background: linear-gradient(270deg, #f8fafc 0%, rgba(248, 250, 252, 0) 100%);
+    }
+    
+    /* Keyframes for sliding animation */
+    @keyframes slideTrack {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(calc(-150px * 24 - 15px * 24)); /* Width of one set of slides */
+        }
+    }
+    
+    /* Responsive adjustments */
+    @media screen and (max-width: 992px) {
+        .tech-slide {
+            width: 140px;
+            margin: 0 12px;
+        }
+        
+        .tech-logo {
+            max-height: 55px;
+        }
+        
+        @keyframes slideTrack {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-140px * 24 - 12px * 24));
+            }
+        }
+    }
+    
+    @media screen and (max-width: 768px) {
+        .tech-showcase {
+            padding: 60px 0;
+        }
+        
+        .tech-slide {
+            width: 120px;
+            margin: 0 10px;
+        }
+        
+        .tech-logo {
+            max-height: 45px;
+        }
+        
+        .tech-slider-overlay {
+            width: 80px;
+        }
+        
+        @keyframes slideTrack {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-120px * 24 - 10px * 24));
+            }
+        }
+    }
+    
+    @media screen and (max-width: 576px) {
+        .tech-slide {
+            width: 100px;
+            margin: 0 8px;
+        }
+        
+        .tech-logo {
+            max-height: 38px;
+        }
+        
+        .tech-slider-overlay {
+            width: 60px;
+        }
+        
+        @keyframes slideTrack {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-100px * 24 - 8px * 24));
+            }
+        }
+    }
+</style>
 
 <!-- Testimonials Section -->
 <section id="testimonials" class="section">
@@ -1177,66 +1560,138 @@ document.addEventListener('DOMContentLoaded', function() {
             <h2>What Our Clients Say</h2>
         </div>
         
-        <div class="testimonials-container">
-            <div class="testimonial-card">
+        <div class="bento-testimonials">
+            <!-- Main Featured Testimonial -->
+            <div class="bento-testimonial bento-testimonial-large">
                 <div class="testimonial-content">
                     <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
-                    <p>"Webart4U transformed our vision for telemedicine into a platform that has revolutionized healthcare delivery in rural areas. Their technical expertise and understanding of user needs resulted in a solution that exceeded our expectations."</p>
+                    <p>"Working with Webart4U transformed our digital presence completely. Their team delivered a sophisticated e-commerce platform that increased our conversion rate by 45% in just three months. What impressed us most was their attentiveness to our business needs and the innovative solutions they brought to the table."</p>
                 </div>
                 <div class="testimonial-author">
-                    <img src="<?php echo IMAGES_PATH; ?>testimonials/rajesh.jpg" alt="Rajesh Mehta" class="author-image">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="James Wilson" class="author-image">
                     <div class="author-info">
-                        <h4>Rajesh Mehta</h4>
-                        <p class="author-position">CEO of GlobalHealth</p>
+                        <h4>James Wilson</h4>
+                        <p class="author-position">CTO at Brightfield Retail, UK</p>
+                        <div class="author-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="corner-accent"></div>
+            </div>
+            
+            <!-- Medium Testimonials -->
+            <div class="bento-testimonial bento-testimonial-medium">
+                <div class="testimonial-content">
+                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                    <p>"Webart4U delivered our healthcare platform on time and within budget. Their understanding of UX in the healthcare space is exceptional. Patient engagement is up 60% since launch."</p>
+                </div>
+                <div class="testimonial-author">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Sophia Mueller" class="author-image">
+                    <div class="author-info">
+                        <h4>Sophia Mueller</h4>
+                        <p class="author-position">Director, MedTech GmbH, Germany</p>
+                        <div class="author-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="corner-accent"></div>
+            </div>
+            
+            <div class="bento-testimonial bento-testimonial-medium">
+                <div class="testimonial-content">
+                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                    <p>"From concept to execution, the Webart4U team exceeded our expectations. Their mobile app design not only looks beautiful but has significantly improved our customer engagement metrics."</p>
+                </div>
+                <div class="testimonial-author">
+                    <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Michael Brooks" class="author-image">
+                    <div class="author-info">
+                        <h4>Michael Brooks</h4>
+                        <p class="author-position">Founder, InnovateTech, USA</p>
+                        <div class="author-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="corner-accent"></div>
+            </div>
+            
+            <!-- Small Testimonials -->
+            <div class="bento-testimonial bento-testimonial-small">
+                <div class="testimonial-content">
+                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                    <p>"Exceptional UI/UX work that truly understands user psychology. Worth every penny!"</p>
+                </div>
+                <div class="testimonial-author-compact">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Emma Davies" class="author-image-small">
+                    <div class="author-info-compact">
+                        <h5>Emma Davies</h5>
+                        <p>UX Lead, TechForward, UK</p>
                     </div>
                 </div>
             </div>
             
-            <div class="testimonial-card">
+            <div class="bento-testimonial bento-testimonial-small">
                 <div class="testimonial-content">
                     <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
-                    <p>"The e-commerce platform developed by Webart4U has been instrumental in our 200% growth over the past year. Their attention to detail and focus on user experience has significantly improved our conversion rates and customer retention."</p>
+                    <p>"Their team's technical prowess and creative approach make them stand out in the industry."</p>
                 </div>
-                <div class="testimonial-author">
-                    <img src="<?php echo IMAGES_PATH; ?>testimonials/priya.jpg" alt="Priya Sharma" class="author-image">
-                    <div class="author-info">
-                        <h4>Priya Sharma</h4>
-                        <p class="author-position">Marketing Director at VelocityShop</p>
+                <div class="testimonial-author-compact">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Pierre Dubois" class="author-image-small">
+                    <div class="author-info-compact">
+                        <h5>Pierre Dubois</h5>
+                        <p>CEO, CreativeVision, France</p>
                     </div>
                 </div>
             </div>
             
-            <div class="testimonial-card">
+            <div class="bento-testimonial bento-testimonial-small bento-testimonial-highlight">
+                <div class="testimonial-stat">
+                    <div class="stat-number large-stat">365<span class="stat-plus">+</span></div>
+                    <div class="stat-label">Projects Completed</div>
+                    <div class="stat-icon"><i class="fas fa-rocket"></i></div>
+                </div>
+            </div>
+            
+            <div class="bento-testimonial bento-testimonial-small">
                 <div class="testimonial-content">
                     <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
-                    <p>"Working with Webart4U was a game-changer for our startup. Their team not only delivered a stunning mobile application but also provided valuable insights that helped shape our business model. They're true partners in our success story."</p>
+                    <p>"Their attention to detail and strategic approach to e-commerce transformed our online business."</p>
                 </div>
-                <div class="testimonial-author">
-                    <img src="<?php echo IMAGES_PATH; ?>testimonials/ahmed.jpg" alt="Ahmed Khan" class="author-image">
-                    <div class="author-info">
-                        <h4>Ahmed Khan</h4>
-                        <p class="author-position">Founder of TourExplore</p>
+                <div class="testimonial-author-compact">
+                    <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Elena Rossi" class="author-image-small">
+                    <div class="author-info-compact">
+                        <h5>Elena Rossi</h5>
+                        <p>Marketing Director, Milano Style, Italy</p>
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <div class="testimonial-indicators">
-            <span class="indicator active"></span>
-            <span class="indicator"></span>
-            <span class="indicator"></span>
         </div>
     </div>
 </section>
 
-<!-- Add the CSS styles for the enhanced testimonials section -->
+<!-- Add the CSS styles for the enhanced testimonials section with bento box design -->
 <style>
-    /* Testimonials Section */
+    /* Testimonials Section - Bento Box Design */
     #testimonials {
         position: relative;
         overflow: hidden;
         padding: 100px 0;
         z-index: 1;
+        background-color: #f8fafc;
     }
     
     .testimonials-background {
@@ -1310,107 +1765,106 @@ document.addEventListener('DOMContentLoaded', function() {
         opacity: 0.6;
     }
     
-    /* Testimonials Container and Cards */
-    .testimonials-container {
-        display: flex;
-        align-items: stretch;
-        justify-content: center;
-        gap: 2rem;
-        position: relative;
+    /* Bento Testimonials Grid */
+    .bento-testimonials {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-auto-rows: minmax(min-content, max-content);
+        gap: 1.5rem;
         margin-top: 3rem;
-        overflow: hidden;
     }
     
-    .testimonial-card {
+    /* Bento Testimonial Boxes */
+    .bento-testimonial {
         background: rgba(255, 255, 255, 0.8);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
         border-radius: 20px;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-        padding: 0;
-        flex: 1;
-        max-width: 380px;
-        min-height: 300px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+        padding: 2rem;
         display: flex;
         flex-direction: column;
         position: relative;
-        transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
         border: 1px solid rgba(255, 255, 255, 0.5);
         transform: translateY(0);
+        overflow: hidden;
     }
     
-    .testimonial-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    .bento-testimonial:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
         z-index: 2;
     }
     
-    .testimonial-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 6px;
-        background: linear-gradient(to right, var(--primary-color), transparent);
-        border-radius: 20px 20px 0 0;
-        opacity: 0;
-        transition: opacity 0.5s ease;
+    /* Testimonial Box Sizes */
+    .bento-testimonial-large {
+        grid-column: span 2;
+        grid-row: span 2;
     }
     
-    .testimonial-card:hover::before {
-        opacity: 1;
+    .bento-testimonial-medium {
+        grid-column: span 2;
+        grid-row: span 1;
     }
     
+    .bento-testimonial-small {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+    
+    /* Testimonial Content */
     .testimonial-content {
-        padding: 2.5rem 2rem 1.5rem;
         position: relative;
         flex-grow: 1;
     }
     
-    .quote-icon {
-        position: absolute;
-        top: -15px;
-        left: 20px;
-        background: var(--primary-color);
-        color: white;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.2rem;
-        box-shadow: 0 5px 15px rgba(var(--primary-color-rgb), 0.3);
-        transition: transform 0.4s ease;
+    .bento-testimonial-large .testimonial-content {
+        margin-bottom: 1.5rem;
     }
     
-    .testimonial-card:hover .quote-icon {
-        transform: rotate(15deg) scale(1.1);
+    .quote-icon {
+        position: absolute;
+        top: -1rem;
+        left: -0.5rem;
+        color: var(--primary-color, #ff5a3c);
+        font-size: 1.5rem;
+        opacity: 0.7;
+        transition: all 0.3s ease;
+    }
+    
+    .bento-testimonial:hover .quote-icon {
+        transform: translateY(-3px) rotate(-10deg);
     }
     
     .testimonial-content p {
         font-size: 1rem;
         line-height: 1.7;
-        color: var(--text-color-dark);
-        margin: 0;
+        color: var(--text-color-dark, #111827);
+        margin: 0.5rem 0 0;
         font-style: italic;
     }
     
+    .bento-testimonial-large .testimonial-content p {
+        font-size: 1.1rem;
+    }
+    
+    .bento-testimonial-small .testimonial-content p {
+        font-size: 0.9rem;
+    }
+    
+    /* Testimonial Author */
     .testimonial-author {
         display: flex;
         align-items: center;
         gap: 1rem;
-        padding: 1.5rem 2rem;
+        padding-top: 1rem;
         border-top: 1px solid rgba(0, 0, 0, 0.05);
-        background: rgba(255, 255, 255, 0.5);
-        border-radius: 0 0 20px 20px;
-        position: relative;
     }
     
     .author-image {
-        width: 50px;
-        height: 50px;
+        width: 60px;
+        height: 60px;
         border-radius: 50%;
         object-fit: cover;
         border: 2px solid white;
@@ -1418,7 +1872,7 @@ document.addEventListener('DOMContentLoaded', function() {
         transition: transform 0.4s ease;
     }
     
-    .testimonial-card:hover .author-image {
+    .bento-testimonial:hover .author-image {
         transform: scale(1.1);
     }
     
@@ -1427,51 +1881,146 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     .author-info h4 {
-        font-size: 1rem;
+        font-size: 1.1rem;
         font-weight: 600;
         margin: 0 0 0.25rem;
-        color: var(--text-color-dark);
+        color: var(--text-color-dark, #111827);
     }
     
     .author-position {
         font-size: 0.85rem;
-        color: var(--text-muted);
-        margin: 0;
+        color: var(--text-muted, #6b7280);
+        margin: 0 0 0.5rem;
     }
     
-    /* Testimonial Indicators */
-    .testimonial-indicators {
+    /* Compact Author for Small Testimonials */
+    .testimonial-author-compact {
         display: flex;
-        justify-content: center;
-        gap: 0.5rem;
-        margin-top: 2.5rem;
+        align-items: center;
+        gap: 0.75rem;
+        margin-top: 1rem;
     }
     
-    .indicator {
-        width: 10px;
-        height: 10px;
+    .author-image-small {
+        width: 40px;
+        height: 40px;
         border-radius: 50%;
-        background-color: rgba(var(--primary-color-rgb), 0.2);
-        cursor: pointer;
+        object-fit: cover;
+        border: 2px solid white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    }
+    
+    .author-info-compact h5 {
+        font-size: 0.9rem;
+        margin: 0 0 0.15rem;
+        font-weight: 600;
+    }
+    
+    .author-info-compact p {
+        font-size: 0.75rem;
+        margin: 0;
+        color: var(--text-muted, #6b7280);
+    }
+    
+    /* Ratings */
+    .author-rating {
+        display: flex;
+        gap: 0.2rem;
+        font-size: 0.8rem;
+        color: #FFC107;
+    }
+    
+    /* Corner Accent */
+    .corner-accent {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 60px;
+        height: 60px;
+        background: var(--primary-color, #ff5a3c);
+        opacity: 0.1;
+        clip-path: polygon(100% 0, 0 0, 100% 100%);
         transition: all 0.3s ease;
     }
     
-    .indicator.active {
-        width: 30px;
-        border-radius: 20px;
-        background-color: var(--primary-color);
+    .bento-testimonial:hover .corner-accent {
+        width: 80px;
+        height: 80px;
+        opacity: 0.15;
+    }
+    
+    /* Highlight Box with Stats */
+    .bento-testimonial-highlight {
+        background: linear-gradient(135deg, var(--primary-color, #ff5a3c), #e63e1b);
+        padding: 1.5rem;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .testimonial-stat {
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .stat-number {
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+        line-height: 1;
+    }
+    
+    .large-stat {
+        font-size: 2.8rem;
+        letter-spacing: -0.03em;
+    }
+    
+    .stat-plus {
+        font-size: 2rem;
+        vertical-align: super;
+        margin-left: -0.2rem;
+    }
+    
+    .stat-label {
+        font-size: 0.9rem;
+        opacity: 0.9;
+        font-weight: 500;
+    }
+    
+    .stat-icon {
+        margin-top: 0.75rem;
+        font-size: 1.75rem;
+        opacity: 0.8;
     }
     
     /* Responsive Adjustments */
-    @media screen and (max-width: 992px) {
-        .testimonials-container {
-            flex-direction: column;
-            align-items: center;
+    @media screen and (max-width: 1200px) {
+        .bento-testimonials {
+            grid-template-columns: repeat(3, 1fr);
         }
         
-        .testimonial-card {
-            max-width: 100%;
-            width: 90%;
+        .bento-testimonial-large {
+            grid-column: span 2;
+        }
+    }
+    
+    @media screen and (max-width: 992px) {
+        .bento-testimonials {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
+        .bento-testimonial-large {
+            grid-column: span 2;
+        }
+        
+        .bento-testimonial-medium {
+            grid-column: span 2;
         }
         
         .testimonial-shape {
@@ -1480,6 +2029,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     @media screen and (max-width: 768px) {
+        .bento-testimonials {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        
+        .bento-testimonial-large,
+        .bento-testimonial-medium,
+        .bento-testimonial-small {
+            grid-column: span 1;
+        }
+        
         #testimonials {
             padding: 70px 0;
         }
@@ -1487,87 +2047,11 @@ document.addEventListener('DOMContentLoaded', function() {
         .testimonial-shape {
             filter: blur(40px);
         }
-        
-        .testimonial-content {
-            padding: 2rem 1.5rem 1rem;
-        }
-        
-        .testimonial-author {
-            padding: 1.25rem 1.5rem;
-        }
     }
 </style>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Set up testimonial carousel functionality
-    const testimonialCards = document.querySelectorAll('.testimonial-card');
-    const indicators = document.querySelectorAll('.testimonial-indicators .indicator');
-    let currentIndex = 0;
-    
-    // Initially hide all cards except the first one
-    function setupCarousel() {
-        if (window.innerWidth <= 992) {
-            // For mobile view, show only one testimonial at a time
-            testimonialCards.forEach((card, index) => {
-                if (index === 0) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-            
-            // Set up indicators
-            indicators.forEach((indicator, index) => {
-                indicator.addEventListener('click', () => {
-                    currentIndex = index;
-                    updateCarousel();
-                });
-            });
-        } else {
-            // For desktop, show all testimonials
-            testimonialCards.forEach(card => {
-                card.style.display = 'flex';
-            });
-        }
-    }
-    
-    function updateCarousel() {
-        testimonialCards.forEach((card, index) => {
-            if (index === currentIndex) {
-                card.style.display = 'flex';
-                card.style.opacity = '0';
-                setTimeout(() => {
-                    card.style.opacity = '1';
-                }, 50);
-            } else {
-                card.style.display = 'none';
-            }
-        });
-        
-        indicators.forEach((indicator, index) => {
-            if (index === currentIndex) {
-                indicator.classList.add('active');
-            } else {
-                indicator.classList.remove('active');
-            }
-        });
-    }
-    
-    // Run setup on load
-    setupCarousel();
-    
-    // Update on resize
-    window.addEventListener('resize', setupCarousel);
-    
-    // Auto-advance carousel for mobile view
-    if (window.innerWidth <= 992) {
-        setInterval(() => {
-            currentIndex = (currentIndex + 1) % testimonialCards.length;
-            updateCarousel();
-        }, 5000);
-    }
-    
     // Add parallax effect to background shapes
     document.addEventListener('mousemove', function(e) {
         if (window.innerWidth <= 768) return; // Disable on mobile
@@ -1590,200 +2074,638 @@ document.addEventListener('DOMContentLoaded', function() {
             shape.style.transform = `translate(${mouseXPercent * factor * 100}px, ${mouseYPercent * factor * 100}px)`;
         });
     });
+    
+    // Add hover effect to testimonials
+    const testimonials = document.querySelectorAll('.bento-testimonial');
+    
+    testimonials.forEach(testimonial => {
+        testimonial.addEventListener('mouseenter', function() {
+            testimonials.forEach(otherTestimonial => {
+                if (otherTestimonial !== testimonial) {
+                    otherTestimonial.style.opacity = '0.7';
+                }
+            });
+        });
+        
+        testimonial.addEventListener('mouseleave', function() {
+            testimonials.forEach(otherTestimonial => {
+                otherTestimonial.style.opacity = '1';
+            });
+        });
+    });
 });
 </script>
 
-<!-- FAQ Section -->
-<section id="faq" class="section">
+<!-- Team Section -->
+<section id="team" class="section">
+    <div class="team-bg">
+        <div class="team-shapes">
+            <div class="team-shape shape-1"></div>
+            <div class="team-shape shape-2"></div>
+            <div class="team-shape shape-3"></div>
+        </div>
+        <div class="team-pattern"></div>
+    </div>
     <div class="container">
-        <div class="section-title">
-            <p class="section-subtitle">Got Questions?</p>
-            <h2>Frequently Asked Questions</h2>
+        <div class="section-title text-center">
+            <p class="section-subtitle">Meet Our Experts</p>
+            <h2>The Creative Minds Behind Our Success</h2>
+            <div class="title-separator"><span></span></div>
+            <p class="section-description">Our talented team combines creativity with technical expertise to deliver exceptional digital solutions</p>
         </div>
         
-        <div class="faq-container">
-            <div class="faq-item animate-on-scroll">
-                <div class="faq-question">
-                    <h3>What services does Webart4U offer?</h3>
-                    <i class="fas fa-chevron-down"></i>
+        <div class="team-container">
+            <div class="team-member-card animate-on-scroll">
+                <div class="member-image-wrapper">
+                    <img src="<?php echo IMAGES_PATH; ?>team/akash.jpg" alt="Akash Chitragar" class="member-image">
+                    <div class="image-overlay"></div>
                 </div>
-                <div class="faq-answer">
-                    <p>We specialize in UI/UX design, website development, web applications, and mobile app development for Android and iOS, using the latest tech stack and AI-driven solutions. Our comprehensive digital services are crafted to transform your business challenges into opportunities for growth and innovation.</p>
-                </div>
-            </div>
-            
-            <div class="faq-item animate-on-scroll">
-                <div class="faq-question">
-                    <h3>How long does it take to develop a website or app?</h3>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>The timeline depends on the complexity and scope of the project. Typically, websites take 2-6 weeks, while mobile apps may take 6-12 weeks. We prioritize quality and precision while maintaining efficiency, ensuring your digital solution launches with impact and performs flawlessly from day one.</p>
+                <div class="member-info">
+                    <h3 class="member-name">Akash Chitragar</h3>
+                    <div class="member-title">Vibe Developer</div>
+                    <p class="member-bio">Akash brings energy and creativity to every project, specializing in developing captivating user experiences.</p>
                 </div>
             </div>
             
-            <div class="faq-item animate-on-scroll">
-                <div class="faq-question">
-                    <h3>Do you provide post-launch support?</h3>
-                    <i class="fas fa-chevron-down"></i>
+            <div class="team-member-card animate-on-scroll">
+                <div class="member-image-wrapper">
+                    <img src="<?php echo IMAGES_PATH; ?>team/vathsala.jpg" alt="Vathsala H K" class="member-image">
+                    <div class="image-overlay"></div>
                 </div>
-                <div class="faq-answer">
-                    <p>Absolutely! We offer ongoing maintenance and support to ensure your website or app runs smoothly and stays updated. Our dedicated support team provides proactive monitoring, regular updates, performance optimization, and rapid response to any issues—ensuring your digital investment continues to deliver value long after launch.</p>
-                </div>
-            </div>
-            
-            <div class="faq-item animate-on-scroll">
-                <div class="faq-question">
-                    <h3>Can you help with branding and logo design?</h3>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    <p>Definitely! We provide comprehensive branding services including logo creation, brand guideline formulation, visual identity development, and brand storytelling. Our design team crafts memorable, cohesive brand identities that resonate with your target audience and differentiate you in competitive markets.</p>
+                <div class="member-info">
+                    <h3 class="member-name">Vathsala H K</h3>
+                    <div class="member-title">Core UI/UX Designer</div>
+                    <p class="member-bio">As our lead UI/UX designer, Vathsala transforms complex requirements into intuitive, beautiful interfaces.</p>
                 </div>
             </div>
             
-            <div class="faq-item animate-on-scroll">
-                <div class="faq-question">
-                    <h3>How do you ensure the security of web applications?</h3>
-                    <i class="fas fa-chevron-down"></i>
+            <div class="team-member-card animate-on-scroll">
+                <div class="member-image-wrapper">
+                    <img src="<?php echo IMAGES_PATH; ?>team/shraddha.jpg" alt="Shraddha Annigeri" class="member-image">
+                    <div class="image-overlay"></div>
                 </div>
-                <div class="faq-answer">
-                    <p>Security is paramount in everything we build. We implement industry-standard security protocols, conduct regular vulnerability assessments, and follow OWASP best practices. For applications handling sensitive data, we incorporate additional security measures like encryption, secure authentication, and regular security audits.</p>
+                <div class="member-info">
+                    <h3 class="member-name">Shraddha Annigeri</h3>
+                    <div class="member-title">Graphics Designer</div>
+                    <p class="member-bio">Shraddha's exceptional visual storytelling abilities bring brands to life across digital platforms.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+<style>
+    /* Modern Team Section Styles */
+    #team {
+        position: relative;
+        padding: 100px 0;
+        overflow: hidden;
+        z-index: 1;
+    }
+    
+    .team-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        overflow: hidden;
+    }
+    
+    .team-shapes {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+    
+    .team-shape {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(70px);
+        opacity: 0.4;
+    }
+    
+    .team-shape.shape-1 {
+        background: linear-gradient(135deg, rgba(255, 75, 36, 0.3), rgba(255, 125, 75, 0.2));
+        width: 500px;
+        height: 500px;
+        top: -200px;
+        right: -150px;
+    }
+    
+    .team-shape.shape-2 {
+        background: linear-gradient(135deg, rgba(34, 139, 230, 0.3), rgba(59, 130, 246, 0.2));
+        width: 600px;
+        height: 600px;
+        bottom: -250px;
+        left: -200px;
+    }
+    
+    .team-shape.shape-3 {
+        background: linear-gradient(135deg, rgba(253, 186, 116, 0.2), rgba(253, 186, 116, 0.1));
+        width: 300px;
+        height: 300px;
+        top: 30%;
+        left: 10%;
+    }
+    
+    .team-pattern {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: radial-gradient(circle, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+        background-size: 30px 30px;
+        opacity: 0.6;
+    }
+    
+    .section-title.text-center {
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto 60px;
+    }
+    
+    .section-description {
+        color: rgba(0, 0, 0, 0.6);
+        font-size: 1.1rem;
+        margin-top: 15px;
+    }
+    
+    .title-separator {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px auto;
+        height: 2px;
+        width: 100px;
+    }
+    
+    .title-separator span {
+        height: 100%;
+        width: 100%;
+        background: linear-gradient(90deg, transparent, #FF4B24, transparent);
+        display: block;
+    }
+    
+    .team-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 40px;
+        margin-top: 40px;
+    }
+    
+    .team-member-card {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        width: 320px;
+        overflow: hidden;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        text-align: center;
+        transition: all 0.4s ease;
+    }
+    
+    .team-member-card:hover {
+        transform: translateY(-15px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    .member-image-wrapper {
+        position: relative;
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        margin: 40px auto 20px;
+        overflow: hidden;
+        border: 5px solid rgba(255, 255, 255, 0.8);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        transition: all 0.4s ease;
+    }
+    
+    .team-member-card:hover .member-image-wrapper {
+        transform: scale(1.05);
+        border-color: rgba(255, 75, 36, 0.3);
+    }
+    
+    .member-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+    }
+    
+    .team-member-card:hover .member-image {
+        transform: scale(1.1);
+    }
+    
+    .image-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+            to bottom,
+            rgba(255, 75, 36, 0),
+            rgba(255, 75, 36, 0.2)
+        );
+        opacity: 0;
+        transition: opacity 0.4s ease;
+    }
+    
+    .team-member-card:hover .image-overlay {
+        opacity: 1;
+    }
+    
+    .member-info {
+        padding: 20px 25px 40px;
+    }
+    
+    .member-name {
+        font-size: 1.4rem;
+        color: #111827;
+        margin-bottom: 8px;
+        font-weight: 700;
+    }
+    
+    .member-title {
+        color: #FF4B24;
+        font-weight: 600;
+        font-size: 0.95rem;
+        letter-spacing: 0.5px;
+        margin-bottom: 20px;
+        position: relative;
+        display: inline-block;
+    }
+    
+    .member-title:after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 40px;
+        height: 2px;
+        background-color: rgba(255, 75, 36, 0.3);
+    }
+    
+    .member-bio {
+        color: #4B5563;
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+    
+    /* Responsive Adjustments */
+    @media screen and (max-width: 992px) {
+        #team {
+            padding: 80px 0;
+        }
+        
+        .team-shape {
+            filter: blur(50px);
+        }
+        
+        .team-container {
+            gap: 30px;
+        }
+    }
+    
+    @media screen and (max-width: 768px) {
+        .team-member-card {
+            width: 100%;
+            max-width: 320px;
+        }
+        
+        .team-shape {
+            filter: blur(40px);
+        }
+        
+        .member-image-wrapper {
+            width: 150px;
+            height: 150px;
+            margin: 30px auto 15px;
+        }
+        
+        .section-description {
+            font-size: 1rem;
+        }
+    }
+</style>
 
 <!-- Contact Section -->
-<section id="contact" class="section">
+<section id="contact" class="section dark-cta-section">
+    <div class="cta-background">
+        <div class="cta-gradient-shapes">
+            <div class="gradient-shape shape-1"></div>
+            <div class="gradient-shape shape-2"></div>
+            <div class="gradient-shape shape-3"></div>
+        </div>
+        <div class="cta-dots"></div>
+                    </div>
     <div class="container">
-        <div class="section-title">
-            <p class="section-subtitle">Get In Touch</p>
-            <h2>Contact Us</h2>
-        </div>
-        <div class="contact-container">
-            <div class="contact-info">
-                <h3>Reach Out To Us</h3>
-                <p>Discuss how we can transform your digital presence. Our team is ready to answer your questions and help you with your project.</p>
-                
-                <div class="contact-detail">
-                    <div class="contact-icon">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <div>
-                        <h4>Our Location</h4>
-                        <address>
-                            Innovation Hub, Tech Park Road,<br>
-                            Hubballi, Karnataka 580031,<br>
-                            India
-                        </address>
-                    </div>
-                </div>
-                
-                <div class="contact-detail">
-                    <div class="contact-icon">
-                        <i class="fas fa-phone"></i>
-                    </div>
-                    <div>
-                        <h4>Phone</h4>
-                        <p>+91 836 XXXXXXX</p>
-                    </div>
-                </div>
-                
-                <div class="contact-detail">
-                    <div class="contact-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <div>
-                        <h4>Email</h4>
-                        <p><a href="mailto:hello@webart4u.com">hello@webart4u.com</a></p>
-                    </div>
-                </div>
-                
-                <div class="contact-detail">
-                    <div class="contact-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <div>
-                        <h4>Office Hours</h4>
-                        <p>
-                            Monday - Friday: 9:00 AM - 6:00 PM IST<br>
-                            Saturday: 10:00 AM - 2:00 PM IST<br>
-                            Sunday: Closed
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="social-links-contact">
-                    <h4>Connect With Us</h4>
-                    <div class="social-icons">
-                        <a href="https://linkedin.com/company/webart4u" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://twitter.com/webart4u" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="https://github.com/webart4u" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="https://instagram.com/webart4u" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
+        <div class="cta-card">
+            <h2>Let's Make Something Together!</h2>
+            <p>Ready to transform your digital vision into reality? Contact us now and let's create something extraordinary.</p>
             
-            <div class="contact-form-container">
-                <?php if ($formSubmitted): ?>
-                    <div class="form-success">
-                        <i class="fas fa-check-circle"></i>
-                        <h3>Thank You!</h3>
-                        <p>Your message has been sent successfully. We'll get back to you as soon as possible.</p>
-                        <a href="<?php echo SITE_URL; ?>" class="btn btn-primary">Back to Home</a>
+            <div class="cta-buttons">
+                <a href="javascript:void(0)" class="btn btn-primary cta-btn schedule-btn" data-cal-link="webart4u/consultation" data-cal-namespace="consultation" data-cal-config='{"layout":"month_view","theme":"light"}'>
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Schedule a Meeting</span>
+                </a>
+                
+                <div class="button-separator"></div>
+                
+                <a href="mailto:info@webart4u.com" class="btn btn-circle">
+                        <i class="fas fa-envelope"></i>
+                </a>
+                
+                <a href="tel:+918867672589" class="btn btn-circle">
+                    <i class="fas fa-phone-alt"></i>
+                </a>
                     </div>
-                <?php else: ?>
-                    <?php if ($formError): ?>
-                        <div class="form-error-message">
-                            <p><i class="fas fa-exclamation-circle"></i> Please fill in all required fields.</p>
-                        </div>
-                    <?php endif; ?>
-                    
-                    <div class="contact-form">
-                        <h3>Send Us a Message</h3>
-                        <form id="contact-form" method="post" action="<?php echo SITE_URL; ?>">
-                            <div class="form-group">
-                                <label for="name" class="form-label">Your Name *</label>
-                                <input type="text" id="name" name="name" class="form-control" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="email" class="form-label">Your Email *</label>
-                                <input type="email" id="email" name="email" class="form-control" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="phone" class="form-label">Phone Number</label>
-                                <input type="tel" id="phone" name="phone" class="form-control">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="subject" class="form-label">Subject</label>
-                                <input type="text" id="subject" name="subject" class="form-control">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="message" class="form-label">Message *</label>
-                                <textarea id="message" name="message" class="form-control" required></textarea>
-                            </div>
-                            
-                            <button type="submit" class="btn btn-primary">Send Message</button>
-                        </form>
                     </div>
-                <?php endif; ?>
-            </div>
-        </div>
-    </div>
+                </div>
 </section>
 
-<!-- Map Section -->
-<section class="map-section">
-    <div class="map-container">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61523.91631883045!2d75.12646441744387!3d15.364268799999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bb8d6d3a2090b17%3A0xf178260867e45bad!2sHub%20Sparkz!5e0!3m2!1sen!2sin!4v1657107219579!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
-</section>
+<!-- Cal.com Integration -->
+<!-- Cal element-click embed code begins -->
+<script type="text/javascript">
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+Cal("init", "consultation", {origin:"https://cal.com"});
+
+  
+  // Important: Please add the following attributes to the element that should trigger the calendar to open upon clicking.
+  // `data-cal-link="webart4u/consultation"`
+  // data-cal-namespace="consultation"
+  // `data-cal-config='{"layout":"month_view","theme":"light"}'`
+
+  Cal.ns.consultation("ui", {"theme":"light","cssVarsPerTheme":{"light":{"cal-brand":"#FF4B24"},"dark":{"cal-brand":"#FF4B24"}},"hideEventTypeDetails":false,"layout":"month_view"});
+</script>
+<!-- Cal element-click embed code ends -->
+            
+<!-- Add the CSS styles for the glassmorphism CTA section -->
+<style>
+    /* Dark CTA Section with Glassmorphism */
+    .dark-cta-section {
+        position: relative;
+        padding: 80px 0; /* Reduced from 120px */
+        background-color: #0F172A;
+        color: white;
+        overflow: hidden;
+        z-index: 1;
+    }
+    
+    .cta-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        overflow: hidden;
+    }
+    
+    .cta-gradient-shapes {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+    
+    .cta-gradient-shapes .gradient-shape {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.4;
+    }
+    
+    .cta-gradient-shapes .shape-1 {
+        background: linear-gradient(135deg, #FF4B24, #FF7A5A);
+        width: 400px;
+        height: 400px;
+        top: -150px;
+        right: -100px;
+        animation: float-shape 15s ease-in-out infinite alternate;
+    }
+    
+    .cta-gradient-shapes .shape-2 {
+        background: linear-gradient(135deg, #4C6EF5, #7C3AED);
+        width: 500px;
+        height: 500px;
+        bottom: -200px;
+        left: -150px;
+        animation: float-shape 18s ease-in-out infinite alternate-reverse;
+    }
+    
+    .cta-gradient-shapes .shape-3 {
+        background: linear-gradient(135deg, #FF4B24, #FF7A5A);
+        width: 300px;
+        height: 300px;
+        top: 40%;
+        left: 30%;
+        animation: float-shape 12s ease-in-out infinite alternate;
+        opacity: 0.3;
+    }
+    
+    @keyframes float-shape {
+        0% {
+            transform: translate(0, 0) scale(1);
+        }
+        100% {
+            transform: translate(20px, 20px) scale(1.1);
+        }
+    }
+    
+    .cta-dots {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: radial-gradient(circle, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+        background-size: 20px 20px;
+        opacity: 0.5;
+    }
+    
+    /* Glassmorphism CTA Card */
+    .cta-card {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-radius: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 40px; 
+        text-align: center;
+        max-width: 1000px; /* Increased from 800px */
+        width: 90%; /* Added for better responsiveness */
+        margin: 0 auto;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+    }
+    
+    .cta-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -50%;
+        width: 200%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        transform: skewX(-20deg);
+        transition: all 0.8s ease;
+        z-index: -1;
+    }
+    
+    .cta-card:hover::before {
+        left: 100%;
+    }
+    
+    .cta-card h2 {
+        font-size: 2.4rem; /* Reduced from 2.8rem */
+        font-weight: 700;
+        margin-bottom: 16px; /* Reduced from 20px */
+        background: linear-gradient(90deg, #FFFFFF, #FF4B24);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    
+    .cta-card p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 30px;
+        max-width: 750px; /* Increased from 600px */
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    /* CTA Buttons */
+    .cta-buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px; /* Increased from 16px */
+        flex-wrap: wrap;
+        max-width: 800px; /* Added to control width */
+        margin: 0 auto;
+    }
+    
+    /* Button Separator */
+    .button-separator {
+        height: 40px;
+        width: 1px;
+        background: rgba(255, 255, 255, 0.2);
+        margin: 0 12px; /* Increased from 8px */
+    }
+    
+    .cta-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 15px 35px; /* Increased from 14px 28px */
+        border-radius: 50px;
+        font-size: 1rem; /* Increased from 0.95rem */
+        font-weight: 600;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        min-width: 220px; /* Added to ensure button has good width */
+    }
+    
+    .schedule-btn {
+        background: #FF4B24;
+        color: white;
+        box-shadow: 0 8px 20px rgba(255, 75, 36, 0.3);
+    }
+    
+    .schedule-btn:hover {
+        background: #e63e1b;
+        transform: translateY(-5px);
+        box-shadow: 0 12px 25px rgba(255, 75, 36, 0.4);
+    }
+    
+    .btn-circle {
+        width: 56px; /* Increased from 50px */
+        height: 56px; /* Increased from 50px */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: white;
+        font-size: 1.2rem; /* Increased from 1.1rem */
+        transition: all 0.3s ease;
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+    }
+    
+    .btn-circle:hover {
+        transform: translateY(-5px) scale(1.1);
+        background: rgba(255, 255, 255, 0.2);
+        color: #FF4B24;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Responsive adjustments */
+    @media screen and (max-width: 992px) {
+        .cta-card {
+            padding: 35px 25px; /* Reduced from 40px 30px */
+        }
+        
+        .cta-card h2 {
+            font-size: 2rem; /* Reduced from 2.2rem */
+        }
+        
+        .dark-cta-section {
+            padding: 70px 0; /* Reduced from 80px */
+        }
+        
+        .button-separator {
+            height: 35px;
+        }
+    }
+    
+    @media screen and (max-width: 768px) {
+        .cta-card {
+            padding: 25px 15px; /* Reduced from 30px 20px */
+        }
+        
+        .cta-card h2 {
+            font-size: 1.6rem; /* Reduced from 1.8rem */
+        }
+        
+        .cta-card p {
+            font-size: 0.95rem; /* Reduced from 1rem */
+        }
+        
+        .cta-btn {
+            padding: 12px 24px; /* Reduced from 14px 28px */
+            font-size: 0.85rem; /* Reduced from 0.9rem */
+        }
+        
+        .btn-circle {
+            width: 45px; /* Reduced from 50px */
+            height: 45px; /* Reduced from 50px */
+            font-size: 0.9rem; /* Reduced from 1rem */
+        }
+        
+        .dark-cta-section {
+            padding: 50px 0; /* Reduced from 60px */
+        }
+        
+        .button-separator {
+            height: 30px;
+        }
+    }
+</style>
 
 <!-- Add the following CSS for the additional styling needed for this page -->
 <style>
@@ -2702,70 +3624,3 @@ document.addEventListener('DOMContentLoaded', function() {
         background-color: #F8F9FA;
     }
 </style>
-
-<!-- Team Section -->
-<section id="team" class="section">
-    <div class="container">
-        <div class="section-title">
-            <p class="section-subtitle">Meet Our Experts</p>
-            <h2>Our Team</h2>
-        </div>
-        <div class="team-grid">
-            <div class="team-member animate-on-scroll">
-                <img src="<?php echo IMAGES_PATH; ?>team/sheetal.jpg" alt="Sheetal Chavan" class="member-image">
-                <div class="member-info">
-                    <h3 class="member-name">Sheetal Chavan</h3>
-                    <p class="member-position">Managing Director</p>
-                    <p>With visionary leadership and strategic insight, Sheetal guides Webart4U's growth and innovation initiatives.</p>
-                    <div class="member-social">
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="team-member animate-on-scroll">
-                <img src="<?php echo IMAGES_PATH; ?>team/akash.jpg" alt="Akash Chitragar" class="member-image">
-                <div class="member-info">
-                    <h3 class="member-name">Akash Chitragar</h3>
-                    <p class="member-position">Vibe Developer</p>
-                    <p>Akash brings energy and creativity to every project, specializing in developing captivating user experiences.</p>
-                    <div class="member-social">
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="team-member animate-on-scroll">
-                <img src="<?php echo IMAGES_PATH; ?>team/vathsala.jpg" alt="Vathsala H K" class="member-image">
-                <div class="member-info">
-                    <h3 class="member-name">Vathsala H K</h3>
-                    <p class="member-position">Core UI/UX Designer</p>
-                    <p>As our lead UI/UX designer, Vathsala transforms complex requirements into intuitive, beautiful interfaces.</p>
-                    <div class="member-social">
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="team-member animate-on-scroll">
-                <img src="<?php echo IMAGES_PATH; ?>team/shraddha.jpg" alt="Shraddha Annigeri" class="member-image">
-                <div class="member-info">
-                    <h3 class="member-name">Shraddha Annigeri</h3>
-                    <p class="member-position">Graphics Designer</p>
-                    <p>Shraddha's exceptional visual storytelling abilities bring brands to life across digital platforms.</p>
-                    <div class="member-social">
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
