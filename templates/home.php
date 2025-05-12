@@ -1568,7 +1568,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p>"Working with Webart4U transformed our digital presence completely. Their team delivered a sophisticated e-commerce platform that increased our conversion rate by 45% in just three months. What impressed us most was their attentiveness to our business needs and the innovative solutions they brought to the table."</p>
                 </div>
                 <div class="testimonial-author">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="James Wilson" class="author-image">
+                    <img src="<?php echo IMAGES_PATH; ?>testimonials/james-wilson.jpg" alt="James Wilson" class="author-image">
                     <div class="author-info">
                         <h4>James Wilson</h4>
                         <p class="author-position">CTO at Brightfield Retail, UK</p>
@@ -1591,7 +1591,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p>"Webart4U delivered our healthcare platform on time and within budget. Their understanding of UX in the healthcare space is exceptional. Patient engagement is up 60% since launch."</p>
                 </div>
                 <div class="testimonial-author">
-                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Sophia Mueller" class="author-image">
+                    <img src="<?php echo IMAGES_PATH; ?>testimonials/sophia-mueller.jpg" alt="Sophia Mueller" class="author-image">
                     <div class="author-info">
                         <h4>Sophia Mueller</h4>
                         <p class="author-position">Director, MedTech GmbH, Germany</p>
@@ -1613,7 +1613,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p>"From concept to execution, the Webart4U team exceeded our expectations. Their mobile app design not only looks beautiful but has significantly improved our customer engagement metrics."</p>
                 </div>
                 <div class="testimonial-author">
-                    <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Michael Brooks" class="author-image">
+                    <img src="<?php echo IMAGES_PATH; ?>testimonials/michael-brooks.jpg" alt="Michael Brooks" class="author-image">
                     <div class="author-info">
                         <h4>Michael Brooks</h4>
                         <p class="author-position">Founder, InnovateTech, USA</p>
@@ -1636,7 +1636,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p>"Exceptional UI/UX work that truly understands user psychology. Worth every penny!"</p>
                 </div>
                 <div class="testimonial-author-compact">
-                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Emma Davies" class="author-image-small">
+                    <img src="<?php echo IMAGES_PATH; ?>testimonials/emma-davies.jpg" alt="Emma Davies" class="author-image-small">
                     <div class="author-info-compact">
                         <h5>Emma Davies</h5>
                         <p>UX Lead, TechForward, UK</p>
@@ -1650,7 +1650,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p>"Their team's technical prowess and creative approach make them stand out in the industry."</p>
                 </div>
                 <div class="testimonial-author-compact">
-                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Pierre Dubois" class="author-image-small">
+                    <img src="<?php echo IMAGES_PATH; ?>testimonials/pierre-dubois.jpg" alt="Pierre Dubois" class="author-image-small">
                     <div class="author-info-compact">
                         <h5>Pierre Dubois</h5>
                         <p>CEO, CreativeVision, France</p>
@@ -1672,7 +1672,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p>"Their attention to detail and strategic approach to e-commerce transformed our online business."</p>
                 </div>
                 <div class="testimonial-author-compact">
-                    <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Elena Rossi" class="author-image-small">
+                    <img src="<?php echo IMAGES_PATH; ?>testimonials/elena-rossi.jpg" alt="Elena Rossi" class="author-image-small">
                     <div class="author-info-compact">
                         <h5>Elena Rossi</h5>
                         <p>Marketing Director, Milano Style, Italy</p>
@@ -3624,3 +3624,121 @@ Cal("init", "consultation", {origin:"https://cal.com"});
         background-color: #F8F9FA;
     }
 </style>
+
+<!-- Add smooth scrolling script for hero CTA buttons -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Get all anchor links in the hero section
+    const heroLinks = document.querySelectorAll('.hero-actions a[href^="#"]');
+    
+    // Add click event listener to each link
+    heroLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            // Prevent default anchor behavior
+            e.preventDefault();
+            
+            // Get the target section id from the href attribute
+            const targetId = this.getAttribute('href');
+            
+            // Get the target element
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                // Calculate scroll position (with offset for potential fixed headers)
+                const headerOffset = 80; // Adjust this value based on your header height
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                
+                // Scroll smoothly to the target
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+});
+</script>
+
+<!-- Add floating back-to-top button -->
+<div id="back-to-top" class="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+</div>
+
+<!-- Add styles for the back-to-top button -->
+<style>
+    .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background-color: #FF4B24;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 9999;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        transform: translateY(20px);
+    }
+    
+    .back-to-top.visible {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    
+    .back-to-top:hover {
+        background-color: #e63e1b;
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .back-to-top i {
+        font-size: 20px;
+    }
+    
+    @media (max-width: 768px) {
+        .back-to-top {
+            width: 40px;
+            height: 40px;
+            bottom: 20px;
+            right: 20px;
+        }
+        
+        .back-to-top i {
+            font-size: 16px;
+        }
+    }
+</style>
+
+<!-- Add script for the back-to-top button functionality -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Get the back-to-top button
+    const backToTopButton = document.getElementById('back-to-top');
+    
+    // Show the button when the user scrolls down 300px
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+            backToTopButton.classList.add('visible');
+        } else {
+            backToTopButton.classList.remove('visible');
+        }
+    });
+    
+    // Scroll to the top when the button is clicked
+    backToTopButton.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+});
+</script>
