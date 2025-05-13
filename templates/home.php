@@ -27,6 +27,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!-- Hero Section -->
 <section class="hero">
+    <style>
+        /* Adjust hero section spacing for mobile header */
+        @media screen and (max-width: 768px) {
+            .hero {
+                padding-top: 0; /* Remove extra padding for mobile */
+                margin-top: 5px; /* Small gap between header and hero */
+            }
+            
+            .hero .container {
+                padding-top: 80px; /* Increased padding for better spacing */
+            }
+            
+            .hero-content {
+                padding-top: 10px; /* Fine-tune content spacing */
+            }
+            
+            .hero .scroll-indicator {
+                bottom: 20px; /* Adjust scroll indicator position */
+            }
+        }
+    </style>
     <div class="hero-background">
         <div class="hero-shapes">
             <div class="shape shape-1"></div>
@@ -123,6 +144,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     .hero .element:hover {
         transform: translateY(-8px) scale(1.05);
         box-shadow: 0 15px 35px rgba(0, 0, 0, 0.18);
+    }
+    
+    /* Hide floating elements on mobile devices */
+    /* Laptop specific (between 992px and 1200px) */
+    @media screen and (min-width: 992px) and (max-width: 1200px) {
+        .hero .real-device-mockup {
+            max-width: 85%; /* Reduce size on laptops */
+            margin: 0 auto;
+        }
+        
+        .hero .mockup-wrapper {
+            transform: scale(0.9);
+            transform-origin: center right;
+        }
+        
+        .hero .element {
+            transform: scale(0.9);
+        }
+    }
+    
+    @media screen and (max-width: 768px) {
+        .hero .floating-elements {
+            display: none;
+        }
     }
 </style>
 
@@ -781,12 +826,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     background 0.4s ease;
     }
     
+    /* Desktop hover and active state */
     .project-item.active .project-content,
     .project-item:hover .project-content {
         max-height: 800px;
         opacity: 1;
         padding: 0 2.5rem 2.5rem 3rem;
         background: rgba(255, 255, 255, 0.15);
+    }
+    
+    /* Mobile: only show content when active, not on hover */
+    @media screen and (max-width: 768px) {
+        .project-item:hover .project-content {
+            max-height: 0;
+            opacity: 0;
+            padding: 0 1.75rem;
+        }
+        
+        .project-item.active .project-content {
+            max-height: 800px;
+            opacity: 1;
+            padding: 0 1.75rem 1.75rem;
+        }
     }
     
     .project-description {
@@ -803,6 +864,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     .project-item:hover .project-description {
         transform: translateY(0);
         opacity: 1;
+    }
+    
+    /* Mobile: only show description when active, not on hover */
+    @media screen and (max-width: 768px) {
+        .project-item:hover .project-description {
+            transform: translateY(10px);
+            opacity: 0;
+        }
+        
+        .project-item.active .project-description {
+            transform: translateY(0);
+            opacity: 1;
+        }
     }
     
     /* Tech Stack Badges with enhanced glass effect */
@@ -941,8 +1015,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             padding-left: 1.75rem;
         }
         
+        /* Hide project categories on mobile as requested */
         .project-category {
-            margin-top: 0.75rem;
+            display: none;
         }
         
         .project-indicator {
@@ -953,18 +1028,55 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         .project-content {
             padding: 0 1.75rem;
+            /* Improve transition on mobile for collapse */
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                        opacity 0.3s ease, 
+                        padding 0.3s ease;
+            max-height: 0 !important; /* Ensure content is hidden by default */
         }
         
-        .project-item.active .project-content,
-        .project-item:hover .project-content {
+        /* Only show content when explicitly active on mobile */
+        .project-item.active .project-content {
+            max-height: 1000px !important; /* Allow enough space for content */
+            opacity: 1;
             padding: 0 1.75rem 1.75rem;
         }
         
+        /* Hide tech stack on mobile as requested */
         .tech-stack {
-            overflow-x: auto;
-            padding-bottom: 0.5rem;
-            flex-wrap: nowrap;
-            scrollbar-width: thin;
+            display: none;
+        }
+        
+        /* Show a project image when expanded on mobile */
+        .project-mobile-image {
+            display: block;
+            width: 100%;
+            border-radius: 12px;
+            margin-bottom: 1.25rem;
+            overflow: hidden;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        
+        .project-mobile-image img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .project-item.active .project-mobile-image img {
+            transform: scale(1.02);
+        }
+        
+        .project-description {
+            margin-bottom: 0.75rem;
+        }
+        
+        /* Ensure hover states don't interfere with click states on mobile */
+        .project-item:hover:not(.active) .project-content {
+            max-height: 0 !important;
+            opacity: 0;
+            padding: 0 1.75rem;
         }
         
         .cursor-thumbnail {
@@ -1113,19 +1225,59 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add special handling for touch devices
         cursorThumbnail.style.display = 'none';
         
-        // For touch devices, make projects toggle on click
+        // For touch devices, make projects toggle on click with image display
         projectItems.forEach(project => {
             project.style.cursor = 'pointer';
-            project.addEventListener('click', function() {
+            project.addEventListener('click', function(e) {
+                // Prevent event bubbling
+                e.stopPropagation();
+                
+                // Check if we're on mobile
+                const isMobile = window.innerWidth <= 768;
+                
                 // Close any previously active project
                 projectItems.forEach(item => {
                     if (item !== this && item.classList.contains('active')) {
                         item.classList.remove('active');
+                        // Remove any previously added mobile images
+                        const oldMobileImage = item.querySelector('.project-mobile-image');
+                        if (oldMobileImage) oldMobileImage.remove();
                     }
                 });
                 
                 // Toggle the current project
-                this.classList.toggle('active');
+                const isActive = this.classList.toggle('active');
+                
+                // For mobile view, handle the project image and visibility
+                if (isMobile) {
+                    const projectContent = this.querySelector('.project-content');
+                    const projectDescription = this.querySelector('.project-description');
+                    
+                    // If activating, add the image before the description
+                    if (isActive) {
+                        const imageUrl = this.getAttribute('data-image');
+                        const imageTitle = this.getAttribute('data-title');
+                        
+                        // Only add if not already present
+                        if (!projectContent.querySelector('.project-mobile-image')) {
+                            const mobileImageContainer = document.createElement('div');
+                            mobileImageContainer.className = 'project-mobile-image';
+                            
+                            const mobileImage = document.createElement('img');
+                            mobileImage.src = imageUrl;
+                            mobileImage.alt = imageTitle;
+                            
+                            mobileImageContainer.appendChild(mobileImage);
+                            projectContent.insertBefore(mobileImageContainer, projectDescription);
+                        }
+                    } else {
+                        // If deactivating, remove the image
+                        const mobileImageContainer = projectContent.querySelector('.project-mobile-image');
+                        if (mobileImageContainer) {
+                            mobileImageContainer.remove();
+                        }
+                    }
+                }
             });
         });
     }
@@ -1498,11 +1650,13 @@ document.addEventListener('DOMContentLoaded', function() {
         
         .tech-slide {
             width: 120px;
-            margin: 0 10px;
+            margin: 0 5px; /* Reduced spacing between logos */
+            height: 100px; /* Increased height for larger logos */
         }
         
         .tech-logo {
-            max-height: 45px;
+            max-height: 75px; /* Increased logo size */
+            filter: grayscale(0%) opacity(1); /* Always show colored logos on mobile */
         }
         
         .tech-slider-overlay {
@@ -1514,23 +1668,56 @@ document.addEventListener('DOMContentLoaded', function() {
                 transform: translateX(0);
             }
             100% {
-                transform: translateX(calc(-120px * 24 - 10px * 24));
+                transform: translateX(calc(-120px * 24 - 5px * 24)); /* Updated margin calculation */
             }
         }
     }
     
     @media screen and (max-width: 576px) {
+        /* Tech slider adjustments */
         .tech-slide {
-            width: 100px;
-            margin: 0 8px;
+            width: 105px;
+            margin: 0 3px; /* Further reduced spacing for smaller screens */
+            height: 90px;
+        }
+        
+        /* Additional CTA section adjustments for very small screens */
+        .cta-card {
+            padding: 25px 15px;
+            width: 95%;
+            border-radius: 15px;
+        }
+        
+        .cta-card h2 {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+        }
+        
+        .cta-card p {
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta-btn {
+            padding: 12px 15px;
+        }
+        
+        .cta-buttons .btn-circle {
+            width: 50px;
+            height: 50px;
+        }
+        
+        .cta-background {
+            opacity: 0.9; /* Slightly reduce background opacity for better text readability */
         }
         
         .tech-logo {
-            max-height: 38px;
+            max-height: 65px; /* Keep logos relatively large even on smaller screens */
+            filter: grayscale(0%) opacity(1);
         }
         
         .tech-slider-overlay {
-            width: 60px;
+            width: 50px;
         }
         
         @keyframes slideTrack {
@@ -1538,7 +1725,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 transform: translateX(0);
             }
             100% {
-                transform: translateX(calc(-100px * 24 - 8px * 24));
+                transform: translateX(calc(-105px * 24 - 3px * 24));
             }
         }
     }
@@ -2420,14 +2607,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 <div class="button-separator"></div>
                 
-                <a href="mailto:info@webart4u.com" class="btn btn-circle">
+                <!-- This div will only be used in mobile view -->
+                <div class="circle-buttons">
+                    <a href="mailto:info@webart4u.com" class="btn btn-circle">
                         <i class="fas fa-envelope"></i>
-                </a>
-                
-                <a href="tel:+918867672589" class="btn btn-circle">
-                    <i class="fas fa-phone-alt"></i>
-                </a>
-                    </div>
+                    </a>
+                    
+                    <a href="tel:+918867672589" class="btn btn-circle">
+                        <i class="fas fa-phone-alt"></i>
+                    </a>
+                </div>
+            </div>
                     </div>
                 </div>
 </section>
@@ -2447,6 +2637,27 @@ Cal("init", "consultation", {origin:"https://cal.com"});
   Cal.ns.consultation("ui", {"theme":"light","cssVarsPerTheme":{"light":{"cal-brand":"#FF4B24"},"dark":{"cal-brand":"#FF4B24"}},"hideEventTypeDetails":false,"layout":"month_view"});
 </script>
 <!-- Cal element-click embed code ends -->
+
+<!-- Mobile touch enhancements for CTA buttons -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Add active state class for better touch feedback
+    const touchButtons = document.querySelectorAll('.cta-btn, .btn-circle');
+    
+    touchButtons.forEach(button => {
+        button.addEventListener('touchstart', function() {
+            this.classList.add('touch-active');
+        }, {passive: true});
+        
+        button.addEventListener('touchend', function() {
+            this.classList.remove('touch-active');
+        }, {passive: true});
+        
+        button.addEventListener('touchcancel', function() {
+            this.classList.remove('touch-active');
+        }, {passive: true});
+    });
+});</script>
             
 <!-- Add the CSS styles for the glassmorphism CTA section -->
 <style>
@@ -2675,34 +2886,92 @@ Cal("init", "consultation", {origin:"https://cal.com"});
     
     @media screen and (max-width: 768px) {
         .cta-card {
-            padding: 25px 15px; /* Reduced from 30px 20px */
+            padding: 30px 20px; /* Increased padding for better touch targets */
+            width: 95%; /* Use more screen space */
+            border-radius: 18px; /* Slightly less rounded corners for more screen space */
         }
         
         .cta-card h2 {
-            font-size: 1.6rem; /* Reduced from 1.8rem */
+            font-size: 1.8rem; /* Increased from 1.6rem for better readability */
+            margin-bottom: 12px;
+            background: linear-gradient(90deg, #FFFFFF, #FF5A3C);
+            background-size: 200% auto;
+            animation: gradient-shift 3s ease infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block; /* Ensure heading displays properly */
+        }
+        
+        @keyframes gradient-shift {
+            0% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+            100% { background-position: 0% center; }
         }
         
         .cta-card p {
-            font-size: 0.95rem; /* Reduced from 1rem */
+            font-size: 1rem; /* Increased for better readability */
+            margin-bottom: 24px;
+            max-width: 100%; /* Full width on mobile */
+            padding: 0 5px;
+        }
+        
+        /* Completely redesigned button layout for mobile */
+        .cta-buttons {
+            flex-direction: column; /* Stack buttons vertically */
+            gap: 15px; /* Reduced space between buttons */
+            align-items: stretch; /* Make all buttons full width */
+            width: 100%;
         }
         
         .cta-btn {
-            padding: 12px 24px; /* Reduced from 14px 28px */
-            font-size: 0.85rem; /* Reduced from 0.9rem */
+            width: 100%; /* Full width for primary button */
+            padding: 15px 20px; /* Larger touch target */
+            font-size: 1rem; /* Larger text */
+            border-radius: 12px; /* Less rounded for more text space */
+            min-width: unset; /* Remove min-width restriction */
+            margin-bottom: 5px;
         }
         
-        .btn-circle {
-            width: 45px; /* Reduced from 50px */
-            height: 45px; /* Reduced from 50px */
-            font-size: 0.9rem; /* Reduced from 1rem */
+        /* Different layout for action buttons */
+        .button-separator {
+            display: none; /* Remove the separator */
+        }
+        
+        /* Create a container for the circular buttons */
+        .cta-buttons::after {
+            content: '';
+            display: block;
+            height: 1px;
+            width: 80%;
+            background: rgba(255, 255, 255, 0.15);
+            margin: 5px auto 10px;
+        }
+        
+        /* Circular buttons container */
+        .cta-buttons .btn-circle {
+            margin: 0 8px; /* Even spacing */
+            width: 54px; /* Larger for easier tapping */
+            height: 54px; /* Larger for easier tapping */
+            font-size: 1.2rem; /* Larger icons */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Position circular buttons in a row */
+        .cta-buttons {
+            position: relative;
+        }
+        
+        /* Container for circular buttons */
+        .cta-buttons .circle-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            width: 100%;
+            margin-top: 5px;
         }
         
         .dark-cta-section {
-            padding: 50px 0; /* Reduced from 60px */
-        }
-        
-        .button-separator {
-            height: 30px;
+            padding: 40px 0; /* Reduced padding for a more compact section */
         }
     }
 </style>
@@ -2764,6 +3033,60 @@ Cal("init", "consultation", {origin:"https://cal.com"});
         opacity: 0;
         transform: translateY(30px);
         transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    
+    /* Mobile-specific CTA enhancements */
+    @media screen and (max-width: 768px) {
+        .cta-gradient-shapes .gradient-shape {
+            filter: blur(60px); /* Less blur for better performance */
+        }
+        
+        .cta-gradient-shapes .shape-1 {
+            width: 250px;
+            height: 250px;
+            top: -50px;
+            right: -50px;
+        }
+        
+        .cta-gradient-shapes .shape-2 {
+            width: 300px;
+            height: 300px;
+            bottom: -100px;
+            left: -80px;
+        }
+        
+        .cta-gradient-shapes .shape-3 {
+            width: 200px;
+            height: 200px;
+        }
+        
+        .cta-dots {
+            background-size: 15px 15px; /* Smaller dots pattern */
+        }
+        
+        /* Enhance tap feedback for mobile buttons */
+        .cta-btn:active, .btn-circle:active,
+        .cta-btn.touch-active, .btn-circle.touch-active {
+            transform: scale(0.98);
+            transition: transform 0.1s ease;
+        }
+        
+        /* Add subtle pulse animation to the main CTA button */
+        .schedule-btn {
+            animation: pulse-cta 2s infinite;
+        }
+        
+        @keyframes pulse-cta {
+            0% {
+                box-shadow: 0 5px 15px rgba(255, 75, 36, 0.3);
+            }
+            50% {
+                box-shadow: 0 5px 25px rgba(255, 75, 36, 0.5);
+            }
+            100% {
+                box-shadow: 0 5px 15px rgba(255, 75, 36, 0.3);
+            }
+        }
     }
     
     .animate-on-scroll.animated {

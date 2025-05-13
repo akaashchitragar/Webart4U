@@ -158,10 +158,145 @@
             transition: all 0.3s ease;
         }
         
+        /* Mobile responsive styles */
+        @media screen and (max-width: 768px) {
+            .nav-capsule {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                transform: none;
+                width: 100%;
+                height: 100vh;
+                border-radius: 0;
+                background-color: rgba(0, 0, 0, 0.95);
+                padding: 80px 20px 20px;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+            }
+            
+            .nav-capsule.active {
+                display: flex;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+                gap: 1.5rem;
+            }
+            
+            .nav-links li a {
+                width: 100%;
+                height: 50px;
+                border-radius: 10px;
+                font-size: 16px;
+                justify-content: flex-start;
+                padding: 0 20px;
+            }
+            
+            .nav-links li a i {
+                margin-right: 15px;
+            }
+            
+            .nav-links li a .tooltip {
+                position: static;
+                display: inline;
+                background: transparent;
+                padding: 0;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                font-size: 16px;
+            }
+            
+            .nav-links li a .tooltip::before {
+                display: none;
+            }
+            
+            .menu-toggle {
+                display: none; /* Hide the menu toggle button in mobile view as requested */
+                position: fixed;
+                top: 10px; /* Aligned with mobile header */
+                right: 15px;
+            }
+            
+            .menu-toggle.open .bar:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 6px);
+            }
+            
+            .menu-toggle.open .bar:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .menu-toggle.open .bar:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -8px);
+            }
+            
+            .nav-logo {
+                margin-bottom: 20px;
+            }
+        }
         /* Mobile responsive adjustments in the responsive.css file */
+    
+    /* Mobile-only header styles */
+    .mobile-header {
+        display: none;
+    }
+    
+    @media screen and (max-width: 768px) {
+        .mobile-header {
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Center the content horizontally */
+            padding: 10px 15px;
+            background-color: rgba(0, 0, 0, 0.8);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        
+        .mobile-header-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Center the logo and text */
+        }
+        
+        .mobile-header-logo img {
+            height: 32px;
+            width: auto;
+            margin-right: 10px;
+        }
+        
+        .mobile-header-title {
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0;
+            letter-spacing: 0.5px;
+        }
+        
+        /* No extra body padding needed as we're adjusting in hero section directly */
+        body {
+            padding-top: 0; /* Remove padding to eliminate gap */
+        }
+    }
     </style>
 </head>
 <body>
+    <!-- Mobile-only header (will only show on mobile devices) -->
+    <header class="mobile-header">
+        <div class="mobile-header-logo">
+            <img src="<?php echo IMAGES_PATH; ?>logo.svg" alt="Webart4U Logo">
+            <h1 class="mobile-header-title">Webart4U</h1>
+        </div>
+    </header>
+
     <!-- Navigation -->
     <nav class="floating-nav">
         <div class="nav-capsule">
@@ -313,6 +448,14 @@
             menuToggle.addEventListener('click', function() {
                 navCapsule.classList.toggle('active');
                 this.classList.toggle('open');
+            });
+            
+            // Check for window resize and reset mobile menu
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768 && navCapsule.classList.contains('active')) {
+                    navCapsule.classList.remove('active');
+                    menuToggle.classList.remove('open');
+                }
             });
         });
     </script>
