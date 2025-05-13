@@ -32,12 +32,12 @@
         /* Navigation Capsule Styling */
         .nav-capsule {
             position: fixed;
-            top: 20px;
+            top: 15px;
             left: 50%;
             transform: translateX(-50%);
             background-color: rgba(0, 0, 0, 0.8);
-            border-radius: 30px;
-            padding: 10px 25px;
+            border-radius: 25px;
+            padding: 6px 18px;
             z-index: 1000;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
             transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
@@ -51,7 +51,7 @@
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.7rem;
         }
         
         .nav-links li {
@@ -80,8 +80,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
+            width: 34px;
+            height: 34px;
             border-radius: 50%;
             transition: all 0.3s ease;
             position: relative;
@@ -91,6 +91,13 @@
         /* Ensure icons are white */
         .nav-links li a i {
             color: white;
+            font-size: 14px;
+        }
+        
+        /* Logo size adjustment */
+        .nav-logo img.nav-logo-img {
+            height: 24px;
+            width: auto;
         }
         
         /* Hover effect */
@@ -106,14 +113,14 @@
         /* Tooltip Styling - appearing BELOW the icon */
         .nav-links li a .tooltip {
             position: absolute;
-            bottom: -30px; /* Position below the icon */
+            bottom: -25px;
             left: 50%;
             transform: translateX(-50%);
             background-color: rgba(0, 0, 0, 0.8);
             color: white;
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 12px;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 10px;
             white-space: nowrap;
             opacity: 0;
             visibility: hidden;
@@ -131,10 +138,10 @@
         .nav-links li a .tooltip::before {
             content: "";
             position: absolute;
-            top: -5px; /* Arrow at the top of the tooltip */
+            top: -4px;
             left: 50%;
             transform: translateX(-50%);
-            border-width: 0 5px 5px 5px;
+            border-width: 0 4px 4px 4px;
             border-style: solid;
             border-color: transparent transparent rgba(0, 0, 0, 0.8) transparent;
         }
@@ -197,6 +204,13 @@
             
             .nav-links li a i {
                 margin-right: 15px;
+                font-size: 16px;
+            }
+            
+            /* Reset logo size for mobile */
+            .nav-logo img.nav-logo-img {
+                height: auto;
+                width: auto;
             }
             
             .nav-links li a .tooltip {
@@ -215,9 +229,9 @@
             }
             
             .menu-toggle {
-                display: none; /* Hide the menu toggle button in mobile view as requested */
+                display: none;
                 position: fixed;
-                top: 10px; /* Aligned with mobile header */
+                top: 10px;
                 right: 15px;
             }
             
@@ -248,7 +262,7 @@
         .mobile-header {
             display: flex;
             align-items: center;
-            justify-content: center; /* Center the content horizontally */
+            justify-content: center;
             padding: 10px 15px;
             background-color: rgba(0, 0, 0, 0.8);
             position: fixed;
@@ -264,7 +278,7 @@
         .mobile-header-logo {
             display: flex;
             align-items: center;
-            justify-content: center; /* Center the logo and text */
+            justify-content: center;
         }
         
         .mobile-header-logo img {
@@ -281,9 +295,8 @@
             letter-spacing: 0.5px;
         }
         
-        /* No extra body padding needed as we're adjusting in hero section directly */
         body {
-            padding-top: 0; /* Remove padding to eliminate gap */
+            padding-top: 0;
         }
     }
     </style>

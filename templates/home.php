@@ -383,6 +383,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         flex-direction: column;
     }
     
+    /* Laptop-specific adjustments */
+    @media screen and (min-width: 769px) and (max-width: 1440px) {
+        .services-container {
+            gap: 15px; /* Reduced from 30px for laptop screens */
+            padding: 0 10px; /* Reduced padding */
+            justify-content: space-between; /* Distribute cards evenly */
+        }
+        
+        .service-card {
+            min-width: 220px; /* Reduced minimum width */
+            max-width: 24%; /* Ensure 4 cards fit in row with spacing */
+        }
+    }
+    
     @media screen and (max-width: 768px) {
         #services {
             padding: 90px 0 110px;
@@ -2464,25 +2478,26 @@ document.addEventListener('DOMContentLoaded', function() {
     
     .member-image-wrapper {
         position: relative;
-        width: 180px;
-        height: 180px;
-        border-radius: 50%;
-        margin: 40px auto 20px;
+        width: 100%;
+        height: 280px;
+        border-radius: 20px 20px 0 0;
+        margin: 0 auto;
         overflow: hidden;
-        border: 5px solid rgba(255, 255, 255, 0.8);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        border: none;
+        box-shadow: none;
         transition: all 0.4s ease;
     }
     
     .team-member-card:hover .member-image-wrapper {
-        transform: scale(1.05);
-        border-color: rgba(255, 75, 36, 0.3);
+        transform: none;
+        border-color: transparent;
     }
     
     .member-image {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        border-radius: 20px 20px 0 0;
         transition: transform 0.6s ease;
     }
     
@@ -2510,7 +2525,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     .member-info {
-        padding: 20px 25px 40px;
+        padding: 25px 25px 40px;
+        background-color: rgba(255, 255, 255, 0.9);
     }
     
     .member-name {
@@ -2560,6 +2576,10 @@ document.addEventListener('DOMContentLoaded', function() {
         .team-container {
             gap: 30px;
         }
+        
+        .member-image-wrapper {
+            height: 240px;
+        }
     }
     
     @media screen and (max-width: 768px) {
@@ -2581,6 +2601,10 @@ document.addEventListener('DOMContentLoaded', function() {
         .section-description {
             font-size: 1rem;
         }
+        
+        .member-image-wrapper {
+            height: 220px;
+        }
     }
 </style>
 
@@ -2593,33 +2617,34 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="gradient-shape shape-3"></div>
         </div>
         <div class="cta-dots"></div>
-                    </div>
+    </div>
     <div class="container">
         <div class="cta-card">
-            <h2>Let's Make Something Together!</h2>
-            <p>Ready to transform your digital vision into reality? Contact us now and let's create something extraordinary.</p>
+            <div class="cta-content">
+                <h2>Let's Make Something Together!</h2>
+                <p>Ready to transform your digital vision into reality? Contact us now and let's create something extraordinary.</p>
+            </div>
             
-            <div class="cta-buttons">
+            <div class="cta-actions">
                 <a href="javascript:void(0)" class="btn btn-primary cta-btn schedule-btn" data-cal-link="webart4u/consultation" data-cal-namespace="consultation" data-cal-config='{"layout":"month_view","theme":"light"}'>
                     <i class="fas fa-calendar-alt"></i>
                     <span>Schedule a Meeting</span>
                 </a>
                 
-                <div class="button-separator"></div>
-                
-                <!-- This div will only be used in mobile view -->
-                <div class="circle-buttons">
-                    <a href="mailto:info@webart4u.com" class="btn btn-circle">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                    
-                    <a href="tel:+918867672589" class="btn btn-circle">
-                        <i class="fas fa-phone-alt"></i>
-                    </a>
-                </div>
-            </div>
+                <div class="contact-options">
+                    <div class="separator"></div>
+                    <div class="contact-buttons">
+                        <a href="mailto:info@webart4u.com" class="btn btn-circle">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="tel:+918867672589" class="btn btn-circle">
+                            <i class="fas fa-phone-alt"></i>
+                        </a>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
 </section>
 
 <!-- Cal.com Integration -->
@@ -2752,8 +2777,8 @@ document.addEventListener('DOMContentLoaded', function() {
         border: 1px solid rgba(255, 255, 255, 0.1);
         padding: 40px; 
         text-align: center;
-        max-width: 1000px; /* Increased from 800px */
-        width: 90%; /* Added for better responsiveness */
+        max-width: 1000px;
+        width: 90%;
         margin: 0 auto;
         box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
         position: relative;
@@ -2778,10 +2803,15 @@ document.addEventListener('DOMContentLoaded', function() {
         left: 100%;
     }
     
+    /* CTA Content */
+    .cta-content {
+        margin-bottom: 30px;
+    }
+    
     .cta-card h2 {
-        font-size: 2.4rem; /* Reduced from 2.8rem */
+        font-size: 2.4rem;
         font-weight: 700;
-        margin-bottom: 16px; /* Reduced from 20px */
+        margin-bottom: 16px;
         background: linear-gradient(90deg, #FFFFFF, #FF4B24);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -2791,43 +2821,52 @@ document.addEventListener('DOMContentLoaded', function() {
         font-size: 1.1rem;
         line-height: 1.6;
         color: rgba(255, 255, 255, 0.8);
-        margin-bottom: 30px;
-        max-width: 750px; /* Increased from 600px */
+        margin-bottom: 0;
+        max-width: 750px;
         margin-left: auto;
         margin-right: auto;
     }
     
-    /* CTA Buttons */
-    .cta-buttons {
+    /* CTA Actions */
+    .cta-actions {
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 20px; /* Increased from 16px */
+        gap: 20px;
         flex-wrap: wrap;
-        max-width: 800px; /* Added to control width */
-        margin: 0 auto;
     }
     
-    /* Button Separator */
-    .button-separator {
+    /* Contact Options */
+    .contact-options {
+        display: flex;
+        align-items: center;
+    }
+    
+    .separator {
         height: 40px;
         width: 1px;
         background: rgba(255, 255, 255, 0.2);
-        margin: 0 12px; /* Increased from 8px */
+        margin: 0 12px;
     }
     
+    .contact-buttons {
+        display: flex;
+        gap: 15px;
+    }
+    
+    /* Button Styles */
     .cta-btn {
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 10px;
-        padding: 15px 35px; /* Increased from 14px 28px */
+        padding: 15px 35px;
         border-radius: 50px;
-        font-size: 1rem; /* Increased from 0.95rem */
+        font-size: 1rem;
         font-weight: 600;
         transition: all 0.3s ease;
         text-decoration: none;
-        min-width: 220px; /* Added to ensure button has good width */
+        min-width: 220px;
     }
     
     .schedule-btn {
@@ -2843,8 +2882,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     .btn-circle {
-        width: 56px; /* Increased from 50px */
-        height: 56px; /* Increased from 50px */
+        width: 56px;
+        height: 56px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -2852,7 +2891,7 @@ document.addEventListener('DOMContentLoaded', function() {
         background: rgba(255, 255, 255, 0.1);
         border: 1px solid rgba(255, 255, 255, 0.2);
         color: white;
-        font-size: 1.2rem; /* Increased from 1.1rem */
+        font-size: 1.2rem;
         transition: all 0.3s ease;
         backdrop-filter: blur(5px);
         -webkit-backdrop-filter: blur(5px);
@@ -2865,41 +2904,76 @@ document.addEventListener('DOMContentLoaded', function() {
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     }
     
-    /* Responsive adjustments */
-    @media screen and (max-width: 992px) {
+    /* Laptop-specific layout (769px-1200px) */
+    @media screen and (min-width: 769px) and (max-width: 1200px) {
         .cta-card {
-            padding: 35px 25px; /* Reduced from 40px 30px */
+            padding: 35px;
+            width: 85%;
+        }
+        
+        .cta-content {
+            margin-bottom: 25px;
         }
         
         .cta-card h2 {
-            font-size: 2rem; /* Reduced from 2.2rem */
+            font-size: 2.2rem;
+            margin-bottom: 15px;
         }
         
-        .dark-cta-section {
-            padding: 70px 0; /* Reduced from 80px */
+        .cta-card p {
+            font-size: 1.05rem;
+            max-width: 85%;
         }
         
-        .button-separator {
+        .cta-btn {
+            min-width: 200px;
+            padding: 14px 25px;
+        }
+        
+        .separator {
             height: 35px;
+            margin: 0 10px;
+        }
+        
+        .contact-buttons {
+            gap: 12px;
+        }
+        
+        .btn-circle {
+            width: 48px;
+            height: 48px;
+            font-size: 1.1rem;
         }
     }
     
+    /* Tablet/small laptop adjustments */
+    @media screen and (max-width: 992px) {
+        .dark-cta-section {
+            padding: 70px 0;
+        }
+    }
+    
+    /* Mobile layout */
     @media screen and (max-width: 768px) {
         .cta-card {
-            padding: 30px 20px; /* Increased padding for better touch targets */
-            width: 95%; /* Use more screen space */
-            border-radius: 18px; /* Slightly less rounded corners for more screen space */
+            padding: 30px 20px;
+            width: 95%;
+            border-radius: 18px;
+        }
+        
+        .cta-content {
+            margin-bottom: 20px;
         }
         
         .cta-card h2 {
-            font-size: 1.8rem; /* Increased from 1.6rem for better readability */
+            font-size: 1.8rem;
             margin-bottom: 12px;
             background: linear-gradient(90deg, #FFFFFF, #FF5A3C);
             background-size: 200% auto;
             animation: gradient-shift 3s ease infinite;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            display: block; /* Ensure heading displays properly */
+            display: block;
         }
         
         @keyframes gradient-shift {
