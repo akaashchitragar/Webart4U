@@ -1,3 +1,18 @@
+// Preloader
+document.addEventListener('DOMContentLoaded', function() {
+    // Hide preloader when page is fully loaded
+    window.addEventListener('load', function() {
+        const preloader = document.querySelector('.preloader');
+        if (preloader) {
+            preloader.classList.add('fade-out');
+            // Remove preloader from DOM after animation completes
+            setTimeout(function() {
+                preloader.style.display = 'none';
+            }, 500);
+        }
+    });
+});
+
 // Mobile Menu Toggle
 document.addEventListener('DOMContentLoaded', function() {
     const menuToggle = document.querySelector('.menu-toggle');

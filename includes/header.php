@@ -11,6 +11,8 @@
     
     <!-- Favicon -->
     <link rel="shortcut icon" href="<?php echo IMAGES_PATH; ?>favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" href="<?php echo IMAGES_PATH; ?>favicon.png">
+    <link rel="apple-touch-icon" href="<?php echo IMAGES_PATH; ?>apple-touch-icon.png">
     
     <!-- CSS Files -->
     <link rel="stylesheet" href="<?php echo CSS_PATH; ?>style.css">
@@ -302,6 +304,14 @@
     </style>
 </head>
 <body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader-logo">
+            <img src="<?php echo IMAGES_PATH; ?>logo.svg" alt="Webart4U Logo">
+            <div class="preloader-spinner"></div>
+        </div>
+    </div>
+    
     <!-- Mobile-only header (will only show on mobile devices) -->
     <header class="mobile-header">
         <div class="mobile-header-logo">
