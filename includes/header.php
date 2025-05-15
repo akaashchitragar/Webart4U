@@ -337,7 +337,7 @@
     <!-- Preloader -->
     <div class="preloader">
         <div class="preloader-logo">
-            <img src="<?php echo IMAGES_PATH; ?>logo.svg" alt="Webart4U Logo">
+            <img src="<?php echo IMAGES_PATH; ?>logo.svg" alt="Webart4U Logo" style="max-width:40px;width:40px;height:auto;">
             <div class="preloader-spinner"></div>
         </div>
     </div>
