@@ -6,9 +6,10 @@ define('DB_PASSWORD', '');
 define('DB_NAME', 'webart4u');
 
 // Site Configuration
-define('SITE_TITLE', 'Webart4U');
-define('SITE_DESCRIPTION', 'Transforming Digital Visions Into Reality Since 2002');
+define('SITE_TITLE', 'Webart4U | Professional Web Design & Development Services');
+define('SITE_DESCRIPTION', 'Transforming Digital Visions Into Reality Since 2002. Expert web design, development, SEO & digital marketing solutions for businesses worldwide.');
 define('SITE_URL', '/');
+define('SITE_KEYWORDS', 'web design, web development, SEO, digital marketing, responsive websites, e-commerce, CMS, WordPress, custom web solutions');
 
 // Email Configuration
 define('ADMIN_EMAIL', 'hello@webart4u.com');

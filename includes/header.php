@@ -4,10 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="<?php echo SITE_DESCRIPTION; ?>">
+    <meta name="keywords" content="web design, web development, digital marketing, SEO, responsive design, e-commerce, custom websites">
+    <meta name="author" content="Webart4U">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta property="og:title" content="<?php echo isset($page_title) ? $page_title . ' - ' . SITE_TITLE : SITE_TITLE; ?>">
+    <meta property="og:description" content="<?php echo SITE_DESCRIPTION; ?>">
+    <meta property="og:url" content="<?php echo 'https://webart4u.com' . $_SERVER['REQUEST_URI']; ?>">
+    <meta property="og:site_name" content="<?php echo SITE_TITLE; ?>">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="<?php echo IMAGES_PATH; ?>og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<?php echo isset($page_title) ? $page_title . ' - ' . SITE_TITLE : SITE_TITLE; ?>">
+    <meta name="twitter:description" content="<?php echo SITE_DESCRIPTION; ?>">
+    <meta name="twitter:image" content="<?php echo IMAGES_PATH; ?>og-image.jpg">
+    <link rel="canonical" href="<?php echo 'https://webart4u.com' . $_SERVER['REQUEST_URI']; ?>">
     <title><?php echo isset($page_title) ? $page_title . ' - ' . SITE_TITLE : SITE_TITLE; ?></title>
     
     <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-P5LVN1NKW5"></script>
+    <!-- Google tag manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
     
     <!-- Favicon -->
     <link rel="shortcut icon" href="<?php echo IMAGES_PATH; ?>favicon.ico" type="image/x-icon">
@@ -29,6 +49,12 @@
     
     <!-- Cookie Consent -->
     <script src="<?php echo JS_PATH; ?>consent.js"></script>
+    
+    <!-- Structured Data -->
+    <script src="<?php echo JS_PATH; ?>structured-data.js"></script>
+    
+    <!-- SEO Optimizer -->
+    <script src="<?php echo JS_PATH; ?>seo-optimizer.js"></script>
     
     <style>
         /* Navigation Capsule Styling */
@@ -304,6 +330,10 @@
     </style>
 </head>
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <!-- Preloader -->
     <div class="preloader">
         <div class="preloader-logo">
