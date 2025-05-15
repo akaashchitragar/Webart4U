@@ -2626,7 +2626,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
             
             <div class="cta-actions">
-                <a href="javascript:void(0)" class="btn btn-primary cta-btn schedule-btn" data-cal-link="webart4u/consultation" data-cal-namespace="consultation" data-cal-config='{"layout":"month_view","theme":"light"}'>
+                <a href="https://cal.com/webart4u/consultation" class="btn btn-primary cta-btn schedule-btn" id="schedule-meeting-btn">
                     <i class="fas fa-calendar-alt"></i>
                     <span>Schedule a Meeting</span>
                 </a>
@@ -2648,20 +2648,43 @@ document.addEventListener('DOMContentLoaded', function() {
 </section>
 
 <!-- Cal.com Integration -->
-<!-- Cal element-click embed code begins -->
-<script type="text/javascript">
-  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
-Cal("init", "consultation", {origin:"https://cal.com"});
+<script src="https://cal.com/embed.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize Cal when document is ready
+  if (typeof Cal !== 'undefined') {
+    Cal("init", {origin:"https://cal.com"});
+  }
 
-  
-  // Important: Please add the following attributes to the element that should trigger the calendar to open upon clicking.
-  // `data-cal-link="webart4u/consultation"`
-  // data-cal-namespace="consultation"
-  // `data-cal-config='{"layout":"month_view","theme":"light"}'`
-
-  Cal.ns.consultation("ui", {"theme":"light","cssVarsPerTheme":{"light":{"cal-brand":"#FF4B24"},"dark":{"cal-brand":"#FF4B24"}},"hideEventTypeDetails":false,"layout":"month_view"});
+  // Set up the meeting button click handler
+  const scheduleBtn = document.getElementById('schedule-meeting-btn');
+  if (scheduleBtn) {
+    scheduleBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      if (typeof Cal !== 'undefined') {
+        // Configure Cal.com
+        Cal("ui", {
+          "theme": "light",
+          "styles": {
+            "branding": {"brandColor": "#FF4B24"}
+          }
+        });
+        
+        // Open Cal.com modal
+        Cal("inline", {
+          elementOrSelector: "#schedule-meeting-btn",
+          calLink: "webart4u/consultation",
+          layout: "month_view"
+        });
+      } else {
+        // Fallback if Cal.com script hasn't loaded
+        window.location.href = "https://cal.com/webart4u/consultation";
+      }
+    });
+  }
+});
 </script>
-<!-- Cal element-click embed code ends -->
 
 <!-- Mobile touch enhancements for CTA buttons -->
 <script>
