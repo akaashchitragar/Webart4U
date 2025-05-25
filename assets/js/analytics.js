@@ -16,51 +16,12 @@ function gtag() {
   dataLayer.push(arguments);
 }
 
-// Initialize GA4 with consent mode
+// Initialize GA4
 gtag('js', new Date());
-gtag('consent', 'default', {
-  'analytics_storage': 'denied'
-});
 gtag('config', GA4_MEASUREMENT_ID, {
   'page_path': window.location.pathname,
   'cookie_flags': 'samesite=none;secure',
-  'anonymize_ip': true, // GDPR compliance enhancement
-  'send_page_view': false // We'll send it manually after consent check
-});
-
-// Send pageview only when analytics storage is granted
-function sendPageviewIfConsented() {
-  const analyticsEnabled = document.cookie.indexOf('webart4u_analytics_enabled=true') !== -1;
-  if (analyticsEnabled) {
-    gtag('event', 'page_view', {
-      'page_title': document.title,
-      'page_location': window.location.href,
-      'page_path': window.location.pathname
-    });
-  }
-}
-
-// Wait for consent to be established (either from cookie or user action)
-document.addEventListener('DOMContentLoaded', function() {
-  // Check if consent already exists
-  const consentGiven = document.cookie.indexOf('webart4u_cookie_consent=true') !== -1;
-  if (consentGiven) {
-    sendPageviewIfConsented();
-  } else {
-    // If consent banner exists, listen for consent events
-    const consentObserver = new MutationObserver(function(mutations) {
-      if (document.cookie.indexOf('webart4u_cookie_consent=true') !== -1) {
-        sendPageviewIfConsented();
-        consentObserver.disconnect(); // Stop observing once consent is given
-      }
-    });
-    
-    // Start observing cookie consent changes
-    consentObserver.observe(document.body, { 
-      childList: true,
-      subtree: true
-    });
-  }
+  'anonymize_ip': true
 });
 
 /**
@@ -155,32 +116,27 @@ function trackPageLoadTime() {
 
 // Initialize all enhanced tracking
 document.addEventListener('DOMContentLoaded', function() {
-  const analyticsEnabled = document.cookie.indexOf('webart4u_analytics_enabled=true') !== -1;
+  // Set up enhanced tracking
+  setupScrollDepthTracking();
+  setupOutboundLinkTracking();
+  setupDownloadTracking();
+  trackPageLoadTime();
   
-  // Only set up enhanced tracking if consent is given
-  if (analyticsEnabled) {
-    // Set up enhanced tracking
-    setupScrollDepthTracking();
-    setupOutboundLinkTracking();
-    setupDownloadTracking();
-    trackPageLoadTime();
-    
-    // Add click tracking to navigation elements
-    const navLinks = document.querySelectorAll('.nav-links li a');
-    navLinks.forEach(link => {
-      link.addEventListener('click', function() {
-        const navItem = this.querySelector('.tooltip')?.textContent || this.getAttribute('href');
-        trackNavigation(navItem);
-      });
+  // Add click tracking to navigation elements
+  const navLinks = document.querySelectorAll('.nav-links li a');
+  navLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      const navItem = this.querySelector('.tooltip')?.textContent || this.getAttribute('href');
+      trackNavigation(navItem);
     });
-    
-    // Add form submission tracking to all forms
-    const forms = document.querySelectorAll('form');
-    forms.forEach(form => {
-      form.addEventListener('submit', function(e) {
-        const formId = this.id || this.getAttribute('name') || 'unknown_form';
-        trackFormSubmission(formId);
-      });
+  });
+  
+  // Add form submission tracking to all forms
+  const forms = document.querySelectorAll('form');
+  forms.forEach(form => {
+    form.addEventListener('submit', function(e) {
+      const formId = this.id || this.getAttribute('name') || 'unknown_form';
+      trackFormSubmission(formId);
     });
-  }
+  });
 }); 

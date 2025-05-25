@@ -48,11 +48,8 @@ $page_title = "Privacy Policy";
                 <ul>
                     <li>Anonymize IP addresses</li>
                     <li>Respect Do Not Track signals</li>
-                    <li>Disable analytics until consent is given</li>
-                    <li>Use cookie consent controls that allow you to opt out of analytics tracking</li>
                 </ul>
                 <p>You can learn more about how Google uses data when you use our site by visiting <a href="https://policies.google.com/privacy/partners" target="_blank" rel="noopener">Google's Privacy & Terms</a>.</p>
-                <p>You can manage your cookie preferences at any time by clicking on the "Cookie Settings" link in our footer.</p>
             </div>
             
             <div class="privacy-section">
@@ -68,7 +65,7 @@ $page_title = "Privacy Policy";
             
             <div class="privacy-section">
                 <h2>Cookies</h2>
-                <p>Our website uses cookies to enhance your experience and collect information about your visit. You can control cookies through your browser settings and our cookie consent manager.</p>
+                <p>Our website uses cookies to enhance your experience and collect information about your visit. You can control cookies through your browser settings.</p>
                 <p>We use the following types of cookies:</p>
                 <ul>
                     <li><strong>Necessary Cookies:</strong> Essential for the website to function properly.</li>

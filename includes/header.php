@@ -47,8 +47,7 @@
     <!-- Enhanced Analytics -->
     <script src="<?php echo JS_PATH; ?>analytics.js"></script>
     
-    <!-- Cookie Consent -->
-    <script src="<?php echo JS_PATH; ?>consent.js"></script>
+
     
     <!-- Structured Data -->
     <script src="<?php echo JS_PATH; ?>structured-data.js"></script>
@@ -334,13 +333,7 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-    <!-- Preloader -->
-    <div class="preloader">
-        <div class="preloader-logo">
-            <img src="<?php echo IMAGES_PATH; ?>logo.svg" alt="Webart4U Logo" style="max-width:40px;width:40px;height:auto;">
-            <div class="preloader-spinner"></div>
-        </div>
-    </div>
+
     
     <!-- Mobile-only header (will only show on mobile devices) -->
     <header class="mobile-header">

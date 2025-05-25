@@ -25,15 +25,14 @@
                 </div>
                 <div class="footer-right">
                     <div class="social-links">
-                        <a href="https://linkedin.com/company/webart4u" aria-label="LinkedIn" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://twitter.com/webart4u" aria-label="Twitter" class="social-icon"><i class="fab fa-twitter"></i></a>
-                        <a href="https://github.com/webart4u" aria-label="GitHub" class="social-icon"><i class="fab fa-github"></i></a>
-                        <a href="https://instagram.com/webart4u" aria-label="Instagram" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/akaash-chitragar/" aria-label="LinkedIn" class="social-icon" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://x.com/chitragarakaash" aria-label="X (Twitter)" class="social-icon" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+                        <a href="https://github.com/akaashchitragar" aria-label="GitHub" class="social-icon" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p class="copyright">&copy; <?php echo date('Y'); ?> Webart4U. All Rights Reserved. <span class="footer-links"><a href="<?php echo SITE_URL; ?>?page=privacy">Privacy</a> <span class="dot-divider">•</span> <a href="<?php echo SITE_URL; ?>?page=terms">Terms</a> <span class="dot-divider">•</span> <a href="#" id="cookie-settings-btn">Cookie Settings</a></span></p>
+                <p class="copyright">&copy; <?php echo date('Y'); ?> Webart4U. All Rights Reserved. <span class="footer-links"><a href="<?php echo SITE_URL; ?>?page=privacy">Privacy</a> <span class="dot-divider">•</span> <a href="<?php echo SITE_URL; ?>?page=terms">Terms</a></span></p>
             </div>
         </div>
     </footer>
@@ -41,29 +40,7 @@
     <!-- JavaScript -->
     <script src="<?php echo JS_PATH; ?>main.js"></script>
     
-    <script>
-        // Cookie settings button functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const cookieSettingsBtn = document.getElementById('cookie-settings-btn');
-            if (cookieSettingsBtn) {
-                cookieSettingsBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    // Show cookie settings if consent manager exists
-                    if (window.consentManager) {
-                        // Show banner if hidden
-                        window.consentManager.consentBanner.style.display = 'block';
-                        // Show settings panel
-                        const content = window.consentManager.consentBanner.querySelector('.consent-content');
-                        const settings = window.consentManager.consentBanner.querySelector('.consent-settings');
-                        if (content && settings) {
-                            content.style.display = 'none';
-                            settings.style.display = 'block';
-                        }
-                    }
-                });
-            }
-        });
-    </script>
+
     
     <style>
         /* Simplified Footer Styles */
@@ -177,8 +154,8 @@
         }
         
         .social-icon:hover {
-            background: rgba(255, 75, 36, 0.2);
-            color: #FF4B24;
+            background: rgba(0, 0, 0, 0.8);
+            color: #ffffff;
             transform: translateY(-2px);
         }
         

@@ -948,22 +948,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     /* Cursor Thumbnail with improved positioning and animation */
     .cursor-thumbnail {
         position: fixed;
+        top: 0;
+        left: 0;
         width: 280px;
         height: 175px;
         pointer-events: none;
         z-index: 100;
-        transform: translate(20px, -50%) scale(0) rotate(-5deg);
+        transform: translate(-50%, -50%) scale(0) rotate(-5deg);
         transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
         opacity: 0;
         border-radius: 16px;
         overflow: hidden;
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
         border: 1px solid rgba(255, 255, 255, 0.4);
+        will-change: transform, opacity;
     }
     
     .cursor-thumbnail.visible {
         opacity: 1;
-        transform: translate(20px, -50%) scale(1) rotate(0deg);
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
     }
     
     .thumbnail-inner {
@@ -1174,8 +1177,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Smooth animation function using requestAnimationFrame
+    // Smooth animation function using requestAnimationFrame with throttling
+    let lastUpdateTime = 0;
+    const updateThreshold = 16; // ~60fps
+    
     function animateThumbnail(targetX, targetY) {
+        const now = Date.now();
+        
+        // Throttle updates to prevent excessive calls
+        if (now - lastUpdateTime < updateThreshold) {
+            return;
+        }
+        lastUpdateTime = now;
+        
         // Cancel any ongoing animation
         if (animationFrameId) {
             cancelAnimationFrame(animationFrameId);
@@ -1183,15 +1197,14 @@ document.addEventListener('DOMContentLoaded', function() {
         
         function animate() {
             // Smooth interpolation with easing
-            lastX = lastX + (targetX - lastX) * 0.15;
-            lastY = lastY + (targetY - lastY) * 0.15;
+            lastX = lastX + (targetX - lastX) * 0.12;
+            lastY = lastY + (targetY - lastY) * 0.12;
             
-            // Apply position
-            cursorThumbnail.style.left = lastX + 'px';
-            cursorThumbnail.style.top = lastY + 'px';
+            // Apply position with transform for better performance
+            cursorThumbnail.style.transform = `translate(${lastX}px, ${lastY}px) translate(-50%, -50%) scale(1)`;
             
             // Continue animation if still moving significantly
-            if (Math.abs(targetX - lastX) > 0.5 || Math.abs(targetY - lastY) > 0.5) {
+            if (Math.abs(targetX - lastX) > 1 || Math.abs(targetY - lastY) > 1) {
                 animationFrameId = requestAnimationFrame(animate);
             } else {
                 animationFrameId = null;
@@ -1203,35 +1216,44 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Track mouse movement to update thumbnail position with smooth interpolation
+    let mouseMoveTimeout;
     portfolioList.addEventListener('mousemove', function(e) {
-        if (!isInsidePortfolio) return;
+        if (!isInsidePortfolio || !currentProject) return;
         
-        // Get portfolio section bounds
-        const portfolioBounds = portfolioSection.getBoundingClientRect();
-        
-        // Calculate thumbnail position - always to the right of cursor by default
-        let x = e.clientX + 30; // Position to the right of cursor with more offset
-        let y = e.clientY;
-        
-        // Get thumbnail dimensions
-        const thumbnailWidth = cursorThumbnail.offsetWidth;
-        const thumbnailHeight = cursorThumbnail.offsetHeight;
-        
-        // Ensure the thumbnail stays within the viewport bounds
-        if (x + thumbnailWidth > window.innerWidth - 20) {
-            // If it would go beyond right edge, position it to the left of cursor instead
-            x = e.clientX - thumbnailWidth - 30;
+        // Clear any existing timeout
+        if (mouseMoveTimeout) {
+            clearTimeout(mouseMoveTimeout);
         }
         
-        // Ensure it stays within vertical bounds
-        if (y - (thumbnailHeight / 2) < portfolioBounds.top) {
-            y = portfolioBounds.top + (thumbnailHeight / 2);
-        } else if (y + (thumbnailHeight / 2) > portfolioBounds.bottom) {
-            y = portfolioBounds.bottom - (thumbnailHeight / 2);
-        }
-        
-        // Animate the thumbnail to the new position
-        animateThumbnail(x, y);
+        // Debounce mouse movement to prevent excessive updates
+        mouseMoveTimeout = setTimeout(() => {
+            // Get portfolio section bounds
+            const portfolioBounds = portfolioSection.getBoundingClientRect();
+            
+            // Calculate thumbnail position - always to the right of cursor by default
+            let x = e.clientX + 30; // Position to the right of cursor with more offset
+            let y = e.clientY;
+            
+            // Get thumbnail dimensions
+            const thumbnailWidth = cursorThumbnail.offsetWidth;
+            const thumbnailHeight = cursorThumbnail.offsetHeight;
+            
+            // Ensure the thumbnail stays within the viewport bounds
+            if (x + thumbnailWidth > window.innerWidth - 20) {
+                // If it would go beyond right edge, position it to the left of cursor instead
+                x = e.clientX - thumbnailWidth - 30;
+            }
+            
+            // Ensure it stays within vertical bounds
+            if (y - (thumbnailHeight / 2) < portfolioBounds.top) {
+                y = portfolioBounds.top + (thumbnailHeight / 2);
+            } else if (y + (thumbnailHeight / 2) > portfolioBounds.bottom) {
+                y = portfolioBounds.bottom - (thumbnailHeight / 2);
+            }
+            
+            // Animate the thumbnail to the new position
+            animateThumbnail(x, y);
+        }, 5); // Small delay to debounce
     });
     
     // Touch devices - fix hover issue
@@ -1492,7 +1514,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <style>
     /* Technology Showcase Section */
     .tech-showcase {
-        background-color: #f8fafc;
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
         padding: 90px 0;
         position: relative;
         overflow: hidden;
@@ -1505,7 +1527,7 @@ document.addEventListener('DOMContentLoaded', function() {
         left: 0;
         right: 0;
         height: 150px;
-        background: linear-gradient(180deg, white, transparent);
+        background: linear-gradient(180deg, rgba(15, 23, 42, 0.8), transparent);
         z-index: 1;
         pointer-events: none;
     }
@@ -1517,7 +1539,7 @@ document.addEventListener('DOMContentLoaded', function() {
         left: 0;
         right: 0;
         height: 150px;
-        background: linear-gradient(0deg, white, transparent);
+        background: linear-gradient(0deg, rgba(15, 23, 42, 0.8), transparent);
         z-index: 1;
         pointer-events: none;
     }
@@ -1526,6 +1548,19 @@ document.addEventListener('DOMContentLoaded', function() {
         margin-bottom: 50px;
         position: relative;
         z-index: 2;
+    }
+    
+    .tech-showcase .section-title h2 {
+        color: #ffffff;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    .tech-showcase .section-subtitle {
+        color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .tech-showcase .section-description {
+        color: rgba(255, 255, 255, 0.7);
     }
     
     .title-separator {
@@ -1596,13 +1631,13 @@ document.addEventListener('DOMContentLoaded', function() {
         max-width: 100%;
         max-height: 65px;
         object-fit: contain;
-        filter: grayscale(100%) opacity(0.7);
+        filter: opacity(1);
         transition: filter 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         will-change: transform, filter;
     }
     
     .tech-slide:hover .tech-logo {
-        filter: grayscale(0%) opacity(1);
+        filter: opacity(1);
         transform: scale(1.08);
     }
     
@@ -1618,12 +1653,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     .tech-slider-overlay.left {
         left: 0;
-        background: linear-gradient(90deg, #f8fafc 0%, rgba(248, 250, 252, 0) 100%);
+        background: linear-gradient(90deg, #0f172a 0%, rgba(15, 23, 42, 0) 100%);
     }
     
     .tech-slider-overlay.right {
         right: 0;
-        background: linear-gradient(270deg, #f8fafc 0%, rgba(248, 250, 252, 0) 100%);
+        background: linear-gradient(270deg, #0f172a 0%, rgba(15, 23, 42, 0) 100%);
     }
     
     /* Keyframes for sliding animation */
@@ -1670,7 +1705,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         .tech-logo {
             max-height: 75px; /* Increased logo size */
-            filter: grayscale(0%) opacity(1); /* Always show colored logos on mobile */
+            filter: opacity(1); /* Always show colored logos on mobile */
         }
         
         .tech-slider-overlay {
@@ -1727,7 +1762,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         .tech-logo {
             max-height: 65px; /* Keep logos relatively large even on smaller screens */
-            filter: grayscale(0%) opacity(1);
+            filter: opacity(1);
         }
         
         .tech-slider-overlay {
@@ -2356,12 +2391,19 @@ document.addEventListener('DOMContentLoaded', function() {
 </section>
 
 <style>
-    /* Modern Team Section Styles */
+    /* Enhanced Team Section Styles */
     #team {
         position: relative;
-        padding: 100px 0;
+        padding: 80px 0;
         overflow: hidden;
         z-index: 1;
+        background: linear-gradient(135deg, 
+            #f8fafc 0%, 
+            #f1f5f9 25%, 
+            #e2e8f0 50%, 
+            #cbd5e1 75%, 
+            #94a3b8 100%
+        );
     }
     
     .team-bg {
@@ -2384,32 +2426,63 @@ document.addEventListener('DOMContentLoaded', function() {
     .team-shape {
         position: absolute;
         border-radius: 50%;
-        filter: blur(70px);
-        opacity: 0.4;
+        filter: blur(80px);
+        opacity: 0.6;
+        animation: float-team 8s ease-in-out infinite;
     }
     
     .team-shape.shape-1 {
-        background: linear-gradient(135deg, rgba(255, 75, 36, 0.3), rgba(255, 125, 75, 0.2));
-        width: 500px;
-        height: 500px;
-        top: -200px;
-        right: -150px;
+        background: radial-gradient(circle, 
+            rgba(148, 163, 184, 0.3) 0%, 
+            rgba(203, 213, 225, 0.2) 40%, 
+            rgba(148, 163, 184, 0.1) 100%
+        );
+        width: 600px;
+        height: 600px;
+        top: -250px;
+        right: -200px;
+        animation-delay: 0s;
     }
     
     .team-shape.shape-2 {
-        background: linear-gradient(135deg, rgba(34, 139, 230, 0.3), rgba(59, 130, 246, 0.2));
-        width: 600px;
-        height: 600px;
-        bottom: -250px;
-        left: -200px;
+        background: radial-gradient(circle, 
+            rgba(100, 116, 139, 0.3) 0%, 
+            rgba(148, 163, 184, 0.2) 40%, 
+            rgba(100, 116, 139, 0.1) 100%
+        );
+        width: 700px;
+        height: 700px;
+        bottom: -300px;
+        left: -250px;
+        animation-delay: 2s;
     }
     
     .team-shape.shape-3 {
-        background: linear-gradient(135deg, rgba(253, 186, 116, 0.2), rgba(253, 186, 116, 0.1));
-        width: 300px;
-        height: 300px;
-        top: 30%;
-        left: 10%;
+        background: radial-gradient(circle, 
+            rgba(203, 213, 225, 0.25) 0%, 
+            rgba(226, 232, 240, 0.15) 40%, 
+            rgba(203, 213, 225, 0.08) 100%
+        );
+        width: 400px;
+        height: 400px;
+        top: 20%;
+        left: 5%;
+        animation-delay: 4s;
+    }
+    
+    @keyframes float-team {
+        0%, 100% { 
+            transform: translate(0, 0) rotate(0deg) scale(1); 
+        }
+        25% { 
+            transform: translate(20px, -30px) rotate(5deg) scale(1.05); 
+        }
+        50% { 
+            transform: translate(-15px, 20px) rotate(-3deg) scale(0.95); 
+        }
+        75% { 
+            transform: translate(25px, 10px) rotate(7deg) scale(1.02); 
+        }
     }
     
     .team-pattern {
@@ -2418,37 +2491,85 @@ document.addEventListener('DOMContentLoaded', function() {
         left: 0;
         right: 0;
         bottom: 0;
-        background-image: radial-gradient(circle, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
-        background-size: 30px 30px;
+        background-image: 
+            radial-gradient(circle at 25% 25%, rgba(100, 116, 139, 0.08) 1px, transparent 1px),
+            radial-gradient(circle at 75% 75%, rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+            linear-gradient(45deg, transparent 40%, rgba(203, 213, 225, 0.03) 50%, transparent 60%);
+        background-size: 40px 40px, 60px 60px, 100px 100px;
         opacity: 0.6;
     }
     
-    .section-title.text-center {
+    .team-pattern::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+            conic-gradient(from 0deg at 20% 30%, transparent 0deg, rgba(148, 163, 184, 0.04) 60deg, transparent 120deg),
+            conic-gradient(from 180deg at 80% 70%, transparent 0deg, rgba(100, 116, 139, 0.04) 60deg, transparent 120deg);
+        opacity: 0.5;
+    }
+    
+    #team .section-title.text-center {
         text-align: center;
         max-width: 800px;
         margin: 0 auto 60px;
+        position: relative;
+        z-index: 2;
     }
     
-    .section-description {
-        color: rgba(0, 0, 0, 0.6);
-        font-size: 1.1rem;
-        margin-top: 15px;
+    #team .section-subtitle {
+        color: #64748b;
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+        position: relative;
     }
     
-    .title-separator {
+    #team .section-title h2 {
+        color: #1e293b;
+        font-size: 2.8rem;
+        font-weight: 700;
+        margin-bottom: 25px;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        line-height: 1.2;
+    }
+    
+    #team .section-description {
+        color: #475569;
+        font-size: 1.2rem;
+        margin-top: 20px;
+        line-height: 1.6;
+        font-weight: 400;
+    }
+    
+    #team .title-separator {
         display: flex;
         justify-content: center;
         align-items: center;
-        margin: 20px auto;
-        height: 2px;
-        width: 100px;
+        margin: 25px auto;
+        height: 3px;
+        width: 120px;
+        position: relative;
     }
     
-    .title-separator span {
+    #team .title-separator span {
         height: 100%;
         width: 100%;
-        background: linear-gradient(90deg, transparent, #FF4B24, transparent);
+        background: linear-gradient(90deg, 
+            transparent, 
+            rgba(255, 75, 36, 0.8), 
+            rgba(100, 116, 139, 0.6), 
+            rgba(255, 75, 36, 0.8), 
+            transparent
+        );
         display: block;
+        border-radius: 2px;
+        box-shadow: 0 0 15px rgba(255, 75, 36, 0.3);
     }
     
     .team-container {
@@ -2457,52 +2578,87 @@ document.addEventListener('DOMContentLoaded', function() {
         flex-wrap: wrap;
         gap: 40px;
         margin-top: 40px;
+        position: relative;
+        z-index: 2;
     }
     
     .team-member-card {
-        background: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(10px);
-        border-radius: 20px;
-        width: 320px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border-radius: 24px;
+        width: 340px;
         overflow: hidden;
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 
+            0 25px 50px rgba(0, 0, 0, 0.15),
+            0 10px 25px rgba(255, 75, 36, 0.1),
+            inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        border: 2px solid rgba(255, 255, 255, 0.3);
         text-align: center;
-        transition: all 0.4s ease;
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+    }
+    
+    .team-member-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, 
+            rgba(255, 75, 36, 0.05) 0%, 
+            transparent 50%, 
+            rgba(59, 130, 246, 0.05) 100%
+        );
+        border-radius: 24px;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        z-index: -1;
     }
     
     .team-member-card:hover {
-        transform: translateY(-15px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        transform: translateY(-10px) scale(1.05);
+        box-shadow: 
+            0 25px 50px rgba(0, 0, 0, 0.2),
+            0 10px 25px rgba(100, 116, 139, 0.3),
+            inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        border-color: rgba(100, 116, 139, 0.4);
+    }
+    
+    .team-member-card:hover::before {
+        opacity: 1;
     }
     
     .member-image-wrapper {
         position: relative;
         width: 100%;
-        height: 280px;
-        border-radius: 20px 20px 0 0;
+        height: 300px;
+        border-radius: 24px 24px 0 0;
         margin: 0 auto;
         overflow: hidden;
         border: none;
-        box-shadow: none;
-        transition: all 0.4s ease;
+        box-shadow: inset 0 -2px 10px rgba(0, 0, 0, 0.1);
+        transition: all 0.5s ease;
     }
     
     .team-member-card:hover .member-image-wrapper {
         transform: none;
         border-color: transparent;
+        box-shadow: inset 0 -5px 20px rgba(100, 116, 139, 0.15);
     }
     
     .member-image {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        border-radius: 20px 20px 0 0;
-        transition: transform 0.6s ease;
+        border-radius: 24px 24px 0 0;
+        transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        filter: brightness(1.05) contrast(1.1);
     }
     
     .team-member-card:hover .member-image {
-        transform: scale(1.1);
+        transform: scale(1.05);
+        filter: brightness(1.05) contrast(1.08);
     }
     
     .image-overlay {
@@ -2513,11 +2669,12 @@ document.addEventListener('DOMContentLoaded', function() {
         bottom: 0;
         background: linear-gradient(
             to bottom,
-            rgba(255, 75, 36, 0),
-            rgba(255, 75, 36, 0.2)
+            rgba(100, 116, 139, 0) 0%,
+            rgba(100, 116, 139, 0.08) 60%,
+            rgba(100, 116, 139, 0.2) 100%
         );
         opacity: 0;
-        transition: opacity 0.4s ease;
+        transition: opacity 0.5s ease;
     }
     
     .team-member-card:hover .image-overlay {
@@ -2525,85 +2682,212 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     .member-info {
-        padding: 25px 25px 40px;
-        background-color: rgba(255, 255, 255, 0.9);
+        padding: 30px 30px 45px;
+        background: linear-gradient(135deg, 
+            rgba(255, 255, 255, 0.98) 0%, 
+            rgba(255, 255, 255, 0.95) 100%
+        );
+        position: relative;
+        transition: all 0.4s ease;
+    }
+    
+    .team-member-card:hover .member-info {
+        background: linear-gradient(135deg, 
+            rgba(255, 255, 255, 1) 0%, 
+            rgba(248, 250, 252, 0.98) 100%
+        );
+        transform: translateY(-2px);
+    }
+    
+    .member-info::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 4px;
+        background: linear-gradient(90deg, 
+            transparent, 
+            rgba(255, 75, 36, 0.6), 
+            transparent
+        );
+        border-radius: 2px;
     }
     
     .member-name {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
         color: #111827;
-        margin-bottom: 8px;
+        margin-bottom: 12px;
         font-weight: 700;
+        letter-spacing: -0.5px;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+    
+    .team-member-card:hover .member-name {
+        color: #0f172a;
+        transform: translateX(3px);
     }
     
     .member-title {
         color: #FF4B24;
         font-weight: 600;
-        font-size: 0.95rem;
-        letter-spacing: 0.5px;
-        margin-bottom: 20px;
+        font-size: 1rem;
+        letter-spacing: 1px;
+        margin-bottom: 25px;
         position: relative;
         display: inline-block;
+        text-transform: uppercase;
+        background: linear-gradient(135deg, #FF4B24, #FF6B44);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
     }
     
     .member-title:after {
         content: '';
         position: absolute;
-        bottom: -10px;
+        bottom: -12px;
         left: 50%;
         transform: translateX(-50%);
-        width: 40px;
-        height: 2px;
-        background-color: rgba(255, 75, 36, 0.3);
+        width: 50px;
+        height: 3px;
+        background: linear-gradient(90deg, 
+            transparent, 
+            rgba(255, 75, 36, 0.6), 
+            rgba(255, 107, 68, 0.4), 
+            transparent
+        );
+        border-radius: 2px;
+        box-shadow: 0 1px 3px rgba(255, 75, 36, 0.3);
     }
     
     .member-bio {
-        color: #4B5563;
-        font-size: 0.95rem;
-        line-height: 1.6;
+        color: #374151;
+        font-size: 1rem;
+        line-height: 1.7;
+        font-weight: 400;
+        letter-spacing: 0.2px;
+        transition: all 0.3s ease;
+    }
+    
+    .team-member-card:hover .member-bio {
+        color: #1e293b;
+        transform: translateY(2px);
     }
     
     /* Responsive Adjustments */
     @media screen and (max-width: 992px) {
         #team {
-            padding: 80px 0;
+            padding: 70px 0;
         }
         
         .team-shape {
-            filter: blur(50px);
+            filter: blur(60px);
+            opacity: 0.5;
         }
         
         .team-container {
             gap: 30px;
         }
         
+        .team-member-card {
+            width: 320px;
+        }
+        
         .member-image-wrapper {
-            height: 240px;
+            height: 260px;
+        }
+        
+        #team .section-title h2 {
+            font-size: 2.4rem;
         }
     }
     
     @media screen and (max-width: 768px) {
+        #team {
+            padding: 60px 0;
+        }
+        
         .team-member-card {
             width: 100%;
-            max-width: 320px;
+            max-width: 340px;
+            margin: 0 auto;
         }
         
         .team-shape {
-            filter: blur(40px);
+            filter: blur(50px);
+            opacity: 0.4;
+        }
+        
+        .team-container {
+            gap: 25px;
+            margin-top: 35px;
+        }
+        
+        #team .section-title h2 {
+            font-size: 2rem;
+        }
+        
+        #team .section-description {
+            font-size: 1.1rem;
         }
         
         .member-image-wrapper {
-            width: 150px;
-            height: 150px;
-            margin: 30px auto 15px;
+            height: 240px;
         }
         
-        .section-description {
+        .member-info {
+            padding: 25px 25px 35px;
+        }
+        
+        .member-name {
+            font-size: 1.3rem;
+        }
+        
+        .member-title {
+            font-size: 0.9rem;
+        }
+        
+        .member-bio {
+            font-size: 0.95rem;
+        }
+    }
+    
+    @media screen and (max-width: 480px) {
+        #team {
+            padding: 60px 0;
+        }
+        
+        .team-container {
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        #team .section-title.text-center {
+            margin: 0 auto 60px;
+        }
+        
+        #team .section-title h2 {
+            font-size: 1.8rem;
+        }
+        
+        #team .section-description {
             font-size: 1rem;
+        }
+        
+        .team-member-card {
+            border-radius: 20px;
         }
         
         .member-image-wrapper {
             height: 220px;
+            border-radius: 20px 20px 0 0;
+        }
+        
+        .member-image {
+            border-radius: 20px 20px 0 0;
         }
     }
 </style>
@@ -2626,7 +2910,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
             
             <div class="cta-actions">
-                <a href="https://cal.com/webart4u/consultation" class="btn btn-primary cta-btn schedule-btn" id="schedule-meeting-btn">
+                <a href="https://cal.com/webart4u/consultation" class="btn btn-primary cta-btn schedule-btn" id="schedule-meeting-btn" target="_blank" rel="noopener noreferrer">
                     <i class="fas fa-calendar-alt"></i>
                     <span>Schedule a Meeting</span>
                 </a>

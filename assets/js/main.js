@@ -1,38 +1,4 @@
-// Preloader
-document.addEventListener('DOMContentLoaded', function() {
-    const preloader = document.querySelector('.preloader');
-    const preloaderLogo = document.querySelector('.preloader-logo img');
-    
-    // Initial state of the preloader (controlled through CSS animations)
-    if (preloaderLogo) {
-        // Ensure initial logo size is not huge while waiting for CSS to load
-        preloaderLogo.style.maxWidth = '40px';
-    }
-    
-    // Hide preloader when page is fully loaded
-    window.addEventListener('load', function() {
-        if (preloader) {
-            // Short delay before removing preloader for better user experience
-            setTimeout(function() {
-                preloader.classList.add('fade-out');
-                // Remove preloader from DOM after animation completes
-                setTimeout(function() {
-                    preloader.style.display = 'none';
-                }, 500);
-            }, 300);
-        }
-    });
-    
-    // Safety fallback: If the page takes too long to load, remove preloader after 5 seconds
-    setTimeout(function() {
-        if (preloader && !preloader.classList.contains('fade-out')) {
-            preloader.classList.add('fade-out');
-            setTimeout(function() {
-                preloader.style.display = 'none';
-            }, 500);
-        }
-    }, 5000);
-});
+
 
 // Mobile Menu Toggle
 document.addEventListener('DOMContentLoaded', function() {
